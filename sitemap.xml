@@ -15,10 +15,6 @@
   </url>
   
   <url>
-    <loc>https://visors.github.io/author/nelson-bighetti/</loc>
-  </url>
-  
-  <url>
     <loc>https://visors.github.io/post/</loc>
   </url>
   
@@ -36,6 +32,10 @@
   
   <url>
     <loc>https://visors.github.io/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://visors.github.io/author/%E4%B8%87%E7%A5%9A%E5%85%A8/</loc>
   </url>
   
 </urlset>
