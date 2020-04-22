@@ -1,16 +1,86 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts | Academic</title>
+    <title>Posts | Visors的个人主页</title>
     <link>https://visors.github.io/post/</link>
       <atom:link href="https://visors.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 22 Apr 2020 21:13:22 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>https://visors.github.io/post/</link>
     </image>
+    
+    <item>
+      <title>Codeforces Round 636 Div.3</title>
+      <link>https://visors.github.io/post/codeforces-round-636-div.3/</link>
+      <pubDate>Wed, 22 Apr 2020 21:13:22 +0800</pubDate>
+      <guid>https://visors.github.io/post/codeforces-round-636-div.3/</guid>
+      <description>&lt;h2 id=&#34;碎碎念&#34;&gt;碎碎念&lt;/h2&gt;
+&lt;p&gt;最近开始参加Codeforces Round——注册四五年，才打四五场比赛。&lt;/p&gt;
+&lt;p&gt;不打打CF还不知道自己竟然这么菜，打个div3先是手速过慢被一众巨巨甩掉，后面偏难题目又A不掉不能实现弯道超车，菜的真实，后面还得加大力度，早日冲上1900分。&lt;/p&gt;
+&lt;h2 id=&#34;解题报告&#34;&gt;解题报告&lt;/h2&gt;
+&lt;h3 id=&#34;d---constant-palindrome-sumhttpscodeforcescomcontest1343problemd&#34;&gt;
+&lt;a href=&#34;https://codeforces.com/contest/1343/problem/D&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;D - Constant Palindrome Sum&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;这题看上去好想二分一波，但实际上并没有什么好的局部转移的规则。由于这场基本都是数学思维题，所以感觉这题也是这个方向。一开始被题面迷惑了一波，以为minimum是要每次改变最小的数，然后YY半天发现其实是最少次改变数……&lt;/p&gt;
+&lt;p&gt;思考的时候已经发现了Tutirial中的三点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;We don&amp;rsquo;t need to change anything in this pair;&lt;/li&gt;
+&lt;li&gt;we can replace one element to fix this pair;&lt;/li&gt;
+&lt;li&gt;we need to replace both elements to fix this pair.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;也想到要hash各个pair对应的x值，不过因为题意读错的原因老是把两个时期的思维过程搞混，导致本Round直线下分，冷静想想自己已经找到近似解了，比赛的时候还是有点不太理智。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;其实思路非常简单，题目只考虑$a[i]+a[n-i+1]$，所以我们可以把$a[i]$和$a[n-i+1]$视为一对$pair$。&lt;/p&gt;
+&lt;p&gt;首先我们读入所有的$pair$，然后对于每对$pair$，我们可以考虑将其三种分类下的作用范围转化为区间涂色问题。线段树可以解决区间涂色问题，但是在这里前缀和更优，参考color the ball那道题目。&lt;/p&gt;
+&lt;p&gt;怎么将其转化为区间涂色问题呢？&lt;/p&gt;
+&lt;p&gt;对于第一种分类，该$pair$和就为其简单相加。&lt;/p&gt;
+&lt;p&gt;对于第二种分类，我们可以考虑固定$pair$的任意元素，改变另外一个元素。例如对于$pair&amp;lt;a,b&amp;gt;$，我们固定$a$，那么由于$b$的改动范围是$[1,k]$，所以整个$pair$的取值范围就是$[a+1,a+k]$，同理也可以固定$b$，改动$a$.&lt;/p&gt;
+&lt;p&gt;对于第三种分类，若设全局$U=[2,2k]$，那么两种都需要改动的范围就是$U-([a+1,a+k]\cup [b+1,b+k]\cup{a+b})$啦&lt;/p&gt;
+&lt;p&gt;从上述情况来看，我们可以声明两个数组，一个数组$pref$用来做前缀和，一个数组$cnt$来统计第一种分类出现的次数，这样就能知道取任意$x$时需要修改的次数，即$pref[x]-cnt[x]+2*(n/2-pref[x])$（第二种分类减去前缀和中多统计的第一种分类，再加上第三种分类）。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/**
+  * @Project Codeforces_Round__636__Div__3_
+  * @Filename Constant
+  * @Author Visors
+  * @Date 2020/4/22 22:23
+  * @Version 1.0
+  * @Description TODO
+  **/
+
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;algorithm&amp;gt;
+#include &amp;lt;vector&amp;gt;
+
+using namespace std;
+int T, n, k, ans;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cin &amp;gt;&amp;gt; T;
+    while (T--) {
+        cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; k;
+        vector&amp;lt;int&amp;gt; a(n), cnt(2 * k + 1), pref(2 * k + 2); //cnt pref多留一个空间避免超界，pref本身有可能操作2*k+1，所以这里+2
+        for (auto &amp;amp;it:a) cin &amp;gt;&amp;gt; it; //Editor这么写的，我也学一波
+        for (int i = 0; i &amp;lt; n / 2; i++) cnt[a[i] + a[n - i - 1]]++; //下标0开始，n-i+1变成n-i-1
+        for (int i = 0; i &amp;lt; n / 2; i++) {
+            int l1 = a[i] + 1, r1 = a[i] + k; //固定左边
+            int l2 = a[n - i - 1] + 1, r2 = a[n - i - 1] + k; //固定右边
+            pref[min(l1, l2)]++;
+            pref[max(r1, r2) + 1]--;
+        }
+        for (int i = 1; i &amp;lt;= 2 * k + 1; i++) pref[i] += pref[i - 1];
+        ans = 1e9;
+        for (int x = 2; x &amp;lt;= 2 * k; x++) ans = min(ans, (pref[x] - cnt[x]) + 2 * (n / 2 - pref[x]));
+        cout &amp;lt;&amp;lt; ans &amp;lt;&amp;lt; endl;
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://visors.github.io/img/cf77661481.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
     
   </channel>
 </rss>
