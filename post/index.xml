@@ -5,12 +5,23 @@
     <link>https://visors.github.io/post/</link>
       <atom:link href="https://visors.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 22 Apr 2020 21:13:22 +0800</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Thu, 23 Apr 2020 14:08:02 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>https://visors.github.io/post/</link>
     </image>
+    
+    <item>
+      <title>我们为何不能轻信评论</title>
+      <link>https://visors.github.io/post/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BD%95%E4%B8%8D%E8%83%BD%E8%BD%BB%E4%BF%A1%E8%AF%84%E8%AE%BA/</link>
+      <pubDate>Thu, 23 Apr 2020 14:08:02 +0800</pubDate>
+      <guid>https://visors.github.io/post/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BD%95%E4%B8%8D%E8%83%BD%E8%BD%BB%E4%BF%A1%E8%AF%84%E8%AE%BA/</guid>
+      <description>&lt;p&gt;近期我常常因为国内外社交媒体下的评论而感到十分恼火，一方面，推特如同催眠般向我推荐反华言论——尽管我关注的人中没有反华分子，反倒是有马云先生、华春莹女士等——另一方面国内媒体如微博、看点下的无脑节奏也让我愤愤不平。但反观我周围，即便我并非处于什么文化人之行列，却仍鲜少有言论无脑之人。于是我陷入了既因为网络无脑节奏之多而怀疑整体网民素质，又因为周围人并没有参与其中而一定程度否定前者的矛盾当中。不过今天饭桌的闲谈中，我似乎突然明白了些什么。&lt;/p&gt;
+&lt;p&gt;当今社交媒体评论显示几乎都是基于热度，我们可以思考热评究竟是如何诞生的。只有在热评尚未诞生之时，我们所看见的热评才几乎等同于最新评论，这时第一批围观者或发表他们的看法，或进行点评赞踩，于是一些言论被顶上前排，成了真正的热评。如果你是后来者，你直接看到的就是他人的热评，大多数人不会有翻看最新评论的习惯，所以往往你发送的迟来的评论并不会引人关注。而事实往往是后来者更倾向于理性看待问题，冲在前面的人往往评论还没经过深度思考，便草草发布，甚至为上热评，刻意带起节奏，而只有这部分的人更容易成为热评，真正理性的评论，却大多数被节奏所淹没，隐藏在了最新评论，或者介于最新评论和热门评论之间的“看不见的地带”。&lt;/p&gt;
+&lt;p&gt;诚然互联网给每个人都带来了网络时代的红利，但目前以热度为基础的网络环境，却实实在在诱导了一些网民的内心，而这种言论一经热度放大，带起的节奏却不是一般人能理性看待的，类似的还有流量热度至上的无良自媒体。尽管热度害人，能让毫无营养的评论走上热评，网民的不理性仍是关键一环，而想让每个人都能从感性认识快速走向理性认识，几乎是不可能完成的事情，如此一想，我不必轻易为评论所左右，我有我自己的理性思考，我也不必为评论所生气，因为它们往往代表着的是所有声音中最不理智的那一些。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Codeforces Round 636 Div.3</title>
@@ -24,7 +35,7 @@
 &lt;h3 id=&#34;d---constant-palindrome-sumhttpscodeforcescomcontest1343problemd&#34;&gt;
 &lt;a href=&#34;https://codeforces.com/contest/1343/problem/D&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;D - Constant Palindrome Sum&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;这题看上去好想二分一波，但实际上并没有什么好的局部转移的规则。由于这场基本都是数学思维题，所以感觉这题也是这个方向。一开始被题面迷惑了一波，以为minimum是要每次改变最小的数，然后YY半天发现其实是最少次改变数……&lt;/p&gt;
-&lt;p&gt;思考的时候已经发现了Tutirial中的三点：&lt;/p&gt;
+&lt;p&gt;思考的时候已经发现了Tutorial中的三点：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;We don&amp;rsquo;t need to change anything in this pair;&lt;/li&gt;
 &lt;li&gt;we can replace one element to fix this pair;&lt;/li&gt;
@@ -37,11 +48,11 @@
 &lt;p&gt;怎么将其转化为区间涂色问题呢？&lt;/p&gt;
 &lt;p&gt;对于第一种分类，该$pair$和就为其简单相加。&lt;/p&gt;
 &lt;p&gt;对于第二种分类，我们可以考虑固定$pair$的任意元素，改变另外一个元素。例如对于$pair&amp;lt;a,b&amp;gt;$，我们固定$a$，那么由于$b$的改动范围是$[1,k]$，所以整个$pair$的取值范围就是$[a+1,a+k]$，同理也可以固定$b$，改动$a$.&lt;/p&gt;
-&lt;p&gt;对于第三种分类，若设全局$U=[2,2k]$，那么两种都需要改动的范围就是$U-([a+1,a+k]\cup [b+1,b+k]\cup{a+b})$啦&lt;/p&gt;
+&lt;p&gt;对于第三种分类，若设全局$U=[2,2k]$，那么两种都需要改动的范围就是$U-([a+1,a+k]\cup [b+1,b+k]\cup {a+b })$啦&lt;/p&gt;
 &lt;p&gt;从上述情况来看，我们可以声明两个数组，一个数组$pref$用来做前缀和，一个数组$cnt$来统计第一种分类出现的次数，这样就能知道取任意$x$时需要修改的次数，即$pref[x]-cnt[x]+2*(n/2-pref[x])$（第二种分类减去前缀和中多统计的第一种分类，再加上第三种分类）。&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/**
   * @Project Codeforces_Round__636__Div__3_
-  * @Filename Constant
+  * @Filename Constant_Palindrome_Sum
   * @Author Visors
   * @Date 2020/4/22 22:23
   * @Version 1.0
@@ -78,7 +89,109 @@ int main() {
     return 0;
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://visors.github.io/img/cf77661481.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;cf77661481.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;e---weights-distributinghttpscodeforcescomcontest1343probleme&#34;&gt;
+&lt;a href=&#34;https://codeforces.com/contest/1343/problem/E&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;E - Weights Distributing&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;这题虽然是2400分，但我觉得我是可写的，只是比赛连看都没看一眼，前面还需压缩时间。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;这道题体面比较长，但其实核心问题比较简单：&lt;/p&gt;
+&lt;p&gt;给定$n$个点$m$条边的无向联通图，先给定$m$个边权$p_i$，问如何分配边权，能使从点$a$到点$b$，再从点$b$到点$c$走过的权值最小。&lt;/p&gt;
+&lt;p&gt;初读题目，可能会觉得这题过水——跑一遍从$a$到$b$的最短路，再跑一遍从$b$到$c$的最短路，然后贪心从小到大取边权，如果两个最短路中间有重复路段就优先取重复的部分。&lt;/p&gt;
+&lt;p&gt;这种想法有可取之处，即把最终选取的路径分为了两类：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;两段路有重合部分&lt;/li&gt;
+&lt;li&gt;两段路没有重复部分&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;但却忽视了关键问题，即求得的最短路很可能有多条，而选择其中的不同条，会产生不一样的分组结果。其实我们希望重复部分尽量多，但沿用上一方法很难处理。这时候如果把路径的选取看成这样：设两段路的交点为$x$，那么上面的两类可以被描述为：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;$a$-&amp;gt;$x$-&amp;gt;$b$-&amp;gt;$x$-&amp;gt;$c$&lt;/li&gt;
+&lt;li&gt;$a$-&amp;gt;$b(x)$-&amp;gt;$c$&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;两种情况对应下图：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR;
+	subgraph situation1
+	a((a))--&amp;gt;x((x));
+	x((x))--&amp;gt;b((b));
+	b((b))--&amp;gt;x((x));
+	x((x))--&amp;gt;c((c));
+	end
+	subgraph situation2
+	A((a))--&amp;gt;B((b=x));
+	B((b=x))--&amp;gt;C((c));
+	end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;于是我们很容易想到求出$a,b,c$到各点的最短路，枚举$x$，找到最小的$dist(a,x)+2*dist(b,x)+dist(c,x)$即为题目要求的答案。&lt;/p&gt;
+&lt;p&gt;因为我们一开始只需要求边数即边权为$1$的最短路径的长度，所以用BFS就可以处理。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/**
+  * @Project Codeforces_Round__636__Div__3_
+  * @Filename Weights_Distributing
+  * @Author Visors
+  * @Date 2020/4/23 21:03
+  * @Version 1.0
+  * @Description TODO
+  **/
+
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;vector&amp;gt;
+#include &amp;lt;algorithm&amp;gt;
+#include &amp;lt;queue&amp;gt;
+
+using namespace std;
+const int oo = 1e9 + 7;
+
+int T, n, m, a, b, c;
+
+vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; G; //内存占用大的声明在全局
+
+void bfs(int v, vector&amp;lt;int&amp;gt; &amp;amp;dist) { //这里传的是引用，不会爆栈
+    dist[v] = 0;
+    queue&amp;lt;int&amp;gt; q;
+    q.push(v);
+    while (!q.empty()) {
+        int t = q.front();
+        q.pop();
+        for (auto it:G[t]) {
+            if (dist[it] == oo) {
+                dist[it] = dist[t] + 1;
+                q.push(it);
+            }
+        }
+    }
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cin &amp;gt;&amp;gt; T;
+    while (T--) {
+        cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b &amp;gt;&amp;gt; c;
+        vector&amp;lt;int&amp;gt; p(m + 1);
+        for (int i = 1; i &amp;lt;= m; i++) cin &amp;gt;&amp;gt; p[i];
+        sort(p.begin() + 1, p.end()); //从大到小排序
+        vector&amp;lt;long long&amp;gt; pref(m + 1); //求前缀和，方便后面快速取最小的路径
+        for (int i = 1; i &amp;lt;= m; i++) pref[i] = pref[i - 1] + p[i];
+        G = vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;(n + 1);
+        for (int i = 1, s, t; i &amp;lt;= m; i++) {
+            cin &amp;gt;&amp;gt; s &amp;gt;&amp;gt; t;
+            G[s].push_back(t);
+            G[t].push_back(s);
+        }
+        vector&amp;lt;int&amp;gt; distA(n + 1, oo), distB(n + 1, oo), distC(n + 1, oo);
+        bfs(a, distA);
+        bfs(b, distB);
+        bfs(c, distC);
+        long long ans = 1e18;
+        for (int x = 1; x &amp;lt;= n; x++) {
+            if (distA[x] + distB[x] + distC[x] &amp;gt; m) continue; //分不了直接跳过
+            ans = min(ans, pref[distB[x]] + pref[distA[x] + distB[x] + distC[x]]);
+            // = 2 * pref[distB[x]] + (pref[distA[x] + distB[x] + distC[x]] - pref[distB[x]])
+        }
+        cout &amp;lt;&amp;lt; ans &amp;lt;&amp;lt; endl;
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;cf77762497.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 </description>
     </item>
     
