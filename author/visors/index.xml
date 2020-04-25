@@ -97,150 +97,510 @@
 &lt;p&gt;而卡特兰数的通项公式正好对应上述结果，即$Catalan(n)=\frac{2n\choose n}{n+1}$&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;del&gt;改编不是乱编，戏说不是胡说。&lt;/del&gt;&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;程序设计题还没写&#34;&gt;程序设计题（还没写）&lt;/h2&gt;
+&lt;h2 id=&#34;程序设计题&#34;&gt;程序设计题&lt;/h2&gt;
 &lt;h3 id=&#34;凯撒密码&#34;&gt;凯撒密码&lt;/h3&gt;
 &lt;h4 id=&#34;问题描述-4&#34;&gt;问题描述&lt;/h4&gt;
-&lt;p&gt;　　给定一个单词，请使用凯撒密码将这个单词加密。
-　　凯撒密码是一种替换加密的技术，单词中的所有字母都在字母表上向后偏移3位后被替换成密文。即a变为d，b变为e，&amp;hellip;，w变为z，x变为a，y变为b，z变为c。
-　　例如，lanqiao会变成odqtldr。&lt;/p&gt;
+&lt;p&gt;给定一个单词，请使用凯撒密码将这个单词加密。&lt;/p&gt;
+&lt;p&gt;凯撒密码是一种替换加密的技术，单词中的所有字母都在字母表上向后偏移3位后被替换成密文。即a变为d，b变为e，&amp;hellip;，w变为z，x变为a，y变为b，z变为c。&lt;/p&gt;
+&lt;p&gt;例如，lanqiao会变成odqtldr。&lt;/p&gt;
 &lt;h4 id=&#34;输入格式&#34;&gt;输入格式&lt;/h4&gt;
-&lt;p&gt;　　输入一行，包含一个单词，单词中只包含小写英文字母。&lt;/p&gt;
+&lt;p&gt;输入一行，包含一个单词，单词中只包含小写英文字母。&lt;/p&gt;
 &lt;h4 id=&#34;输出格式&#34;&gt;输出格式&lt;/h4&gt;
-&lt;p&gt;　　输出一行，表示加密后的密文。&lt;/p&gt;
+&lt;p&gt;输出一行，表示加密后的密文。&lt;/p&gt;
 &lt;h4 id=&#34;样例输入&#34;&gt;样例输入&lt;/h4&gt;
-&lt;p&gt;lanqiao&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;lanqiao&lt;/code&gt;&lt;/p&gt;
 &lt;h4 id=&#34;样例输出&#34;&gt;样例输出&lt;/h4&gt;
-&lt;p&gt;odqtldr&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;odqtldr&lt;/code&gt;&lt;/p&gt;
 &lt;h4 id=&#34;评测用例规模与约定&#34;&gt;评测用例规模与约定&lt;/h4&gt;
-&lt;p&gt;　　对于所有评测用例，单词中的字母个数不超过100。&lt;/p&gt;
-&lt;p&gt;abcdefghijklmnopqrstuvwxyz&lt;/p&gt;
+&lt;p&gt;对于所有评测用例，单词中的字母个数不超过100。&lt;/p&gt;
+&lt;h3 id=&#34;思路与代码&#34;&gt;思路与代码&lt;/h3&gt;
+&lt;p&gt;利用ASCII值进行变换，注意处理x,y,z，直接给出代码&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/**
+  * @Project lanqiao_provincial_simulation
+  * @Filename 5
+  * @Author Visors
+  * @Date 2020/4/25 8:48
+  * @Version 1.0
+  * @Description 凯撒密码
+  **/
+
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;string&amp;gt;
+
+using namespace std;
+string s;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cin &amp;gt;&amp;gt; s;
+    int len = s.length();
+    for (int i = 0; i &amp;lt; len; i++) s[i] = (s[i] + 3 - &#39;a&#39;) % 26 + &#39;a&#39;;
+    cout &amp;lt;&amp;lt; s &amp;lt;&amp;lt; endl;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;不用写很多if，一个公式就可以解决了。&lt;/p&gt;
+&lt;p&gt;本题的一个好的测试方法是，输入&lt;code&gt;abcdefghijklmnopqrstuvwxyz&lt;/code&gt;，看看结果是否为&lt;code&gt;defghijklmnopqrstuvwxyzabc&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
 &lt;h3 id=&#34;反倍数&#34;&gt;反倍数&lt;/h3&gt;
 &lt;h4 id=&#34;问题描述-5&#34;&gt;问题描述&lt;/h4&gt;
-&lt;p&gt;　　给定三个整数 a, b, c，如果一个整数既不是 a 的整数倍也不是 b 的整数倍还不是 c 的整数倍，则这个数称为反倍数。
-　　请问在 1 至 n 中有多少个反倍数。&lt;/p&gt;
+&lt;p&gt;给定三个整数 a, b, c，如果一个整数既不是 a 的整数倍也不是 b 的整数倍还不是 c 的整数倍，则这个数称为反倍数。&lt;/p&gt;
+&lt;p&gt;请问在 1 至 n 中有多少个反倍数。&lt;/p&gt;
 &lt;h4 id=&#34;输入格式-1&#34;&gt;输入格式&lt;/h4&gt;
-&lt;p&gt;　　输入的第一行包含一个整数 n。
-　　第二行包含三个整数 a, b, c，相邻两个数之间用一个空格分隔。&lt;/p&gt;
+&lt;p&gt;输入的第一行包含一个整数 n。&lt;/p&gt;
+&lt;p&gt;第二行包含三个整数 a, b, c，相邻两个数之间用一个空格分隔。&lt;/p&gt;
 &lt;h4 id=&#34;输出格式-1&#34;&gt;输出格式&lt;/h4&gt;
-&lt;p&gt;　　输出一行包含一个整数，表示答案。&lt;/p&gt;
+&lt;p&gt;输出一行包含一个整数，表示答案。&lt;/p&gt;
 &lt;h4 id=&#34;样例输入-1&#34;&gt;样例输入&lt;/h4&gt;
-&lt;p&gt;30
-2 3 6&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;30&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;2 3 6&lt;/code&gt;&lt;/p&gt;
 &lt;h4 id=&#34;样例输出-1&#34;&gt;样例输出&lt;/h4&gt;
-&lt;p&gt;10&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;10&lt;/code&gt;&lt;/p&gt;
 &lt;h4 id=&#34;样例说明&#34;&gt;样例说明&lt;/h4&gt;
-&lt;p&gt;　　以下这些数满足要求：1, 5, 7, 11, 13, 17, 19, 23, 25, 29。&lt;/p&gt;
+&lt;p&gt;以下这些数满足要求：1, 5, 7, 11, 13, 17, 19, 23, 25, 29。&lt;/p&gt;
 &lt;h4 id=&#34;评测用例规模与约定-1&#34;&gt;评测用例规模与约定&lt;/h4&gt;
-&lt;p&gt;　　对于 40% 的评测用例，1 &amp;lt;= n &amp;lt;= 10000。
-　　对于 80% 的评测用例，1 &amp;lt;= n &amp;lt;= 100000。
-　　对于所有评测用例，1 &amp;lt;= n &amp;lt;= 1000000，1 &amp;lt;= a &amp;lt;= n，1 &amp;lt;= b &amp;lt;= n，1 &amp;lt;= c &amp;lt;= n。&lt;/p&gt;
+&lt;p&gt;对于 40% 的评测用例，1 &amp;lt;= n &amp;lt;= 10000。&lt;/p&gt;
+&lt;p&gt;对于 80% 的评测用例，1 &amp;lt;= n &amp;lt;= 100000。&lt;/p&gt;
+&lt;p&gt;对于所有评测用例，1 &amp;lt;= n &amp;lt;= 1000000，1 &amp;lt;= a &amp;lt;= n，1 &amp;lt;= b &amp;lt;= n，1 &amp;lt;= c &amp;lt;= n。&lt;/p&gt;
+&lt;h3 id=&#34;思路与代码-1&#34;&gt;思路与代码&lt;/h3&gt;
+&lt;p&gt;就这个范围，暴力应该就可以了，不过我还是敲了个筛法。最关键的地方是，不要重复统计！&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/**
+  * @Project lanqiao_provincial_simulation
+  * @Filename 6
+  * @Author Visors
+  * @Date 2020/4/25 8:53
+  * @Version 1.0
+  * @Description 反倍数
+  **/
+
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;vector&amp;gt;
+#include &amp;lt;algorithm&amp;gt;
+
+using namespace std;
+const int N = 1e6 + 5;
+int n;
+bool book[N]; //记录非反倍数
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cin &amp;gt;&amp;gt; n;
+    vector&amp;lt;int&amp;gt; v(3);
+    for (auto &amp;amp;it:v) cin &amp;gt;&amp;gt; it;
+    sort(v.begin(), v.end()); //对题目的a,b,c从小到大排序，至于为什么，见后面
+    long long a, b, c; //因为要乘所以开long long，不然如果题目给个1和1000000
+    // 我的程序就会1000000*1000000导致int溢出
+    int tot = 0; //统计非反倍数个数
+    for (int i = 1; i &amp;lt;= n; i++) { //枚举倍数
+        a = v[0] * i;
+        b = v[1] * i;
+        c = v[2] * i;
+        //cout &amp;lt;&amp;lt; a &amp;lt;&amp;lt; &#39; &#39; &amp;lt;&amp;lt; b &amp;lt;&amp;lt; &#39; &#39; &amp;lt;&amp;lt; c &amp;lt;&amp;lt; endl;
+        if (a &amp;gt; n) break; //最小数的倍数都比n大，其它数肯定也大，直接结束
+        if (a &amp;lt;= n &amp;amp;&amp;amp; !book[a]) { //a*i没超界且该数没被记录过（去重）
+            book[a] = true; //记录
+            tot++; //非反倍数+1
+        }
+        if (b &amp;lt;= n &amp;amp;&amp;amp; !book[b]) {
+            book[b] = true;
+            tot++;
+        }
+        if (c &amp;lt;= n &amp;amp;&amp;amp; !book[c]) {
+            book[c] = true;
+            tot++;
+        }
+    }
+    cout &amp;lt;&amp;lt; n - tot &amp;lt;&amp;lt; endl; //总个数-非反倍数个数=反倍数个数
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;有点小题大做不是……&lt;/p&gt;
+&lt;hr&gt;
 &lt;h3 id=&#34;螺旋矩阵&#34;&gt;螺旋矩阵&lt;/h3&gt;
 &lt;h4 id=&#34;问题描述-6&#34;&gt;问题描述&lt;/h4&gt;
-&lt;p&gt;　　对于一个 n 行 m 列的表格，我们可以使用螺旋的方式给表格依次填上正整数，我们称填好的表格为一个螺旋矩阵。
-　　例如，一个 4 行 5 列的螺旋矩阵如下：
-　　1 2 3 4 5
-　　14 15 16 17 6
-　　13 20 19 18 7
-　　12 11 10 9 8&lt;/p&gt;
+&lt;p&gt;对于一个 n 行 m 列的表格，我们可以使用螺旋的方式给表格依次填上正整数，我们称填好的表格为一个螺旋矩阵。&lt;/p&gt;
+&lt;p&gt;例如，一个 4 行 5 列的螺旋矩阵如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1  2  3  4  5
+14 15 16 17 6
+13 20 19 18 7
+12 11 10 9  8
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;输入格式-2&#34;&gt;输入格式&lt;/h4&gt;
-&lt;p&gt;　　输入的第一行包含两个整数 n, m，分别表示螺旋矩阵的行数和列数。
-　　第二行包含两个整数 r, c，表示要求的行号和列号。&lt;/p&gt;
+&lt;p&gt;输入的第一行包含两个整数 n, m，分别表示螺旋矩阵的行数和列数。&lt;/p&gt;
+&lt;p&gt;第二行包含两个整数 r, c，表示要求的行号和列号。&lt;/p&gt;
 &lt;h4 id=&#34;输出格式-2&#34;&gt;输出格式&lt;/h4&gt;
-&lt;p&gt;　　输出一个整数，表示螺旋矩阵中第 r 行第 c 列的元素的值。&lt;/p&gt;
+&lt;p&gt;输出一个整数，表示螺旋矩阵中第 r 行第 c 列的元素的值。&lt;/p&gt;
 &lt;h4 id=&#34;样例输入-2&#34;&gt;样例输入&lt;/h4&gt;
-&lt;p&gt;4 5
-2 2&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;4 5&lt;/code&gt;
+&lt;code&gt;2 2&lt;/code&gt;&lt;/p&gt;
 &lt;h4 id=&#34;样例输出-2&#34;&gt;样例输出&lt;/h4&gt;
-&lt;p&gt;15&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;15&lt;/code&gt;&lt;/p&gt;
 &lt;h4 id=&#34;评测用例规模与约定-2&#34;&gt;评测用例规模与约定&lt;/h4&gt;
-&lt;p&gt;　　对于 30% 的评测用例，2 &amp;lt;= n, m &amp;lt;= 20。
-　　对于 70% 的评测用例，2 &amp;lt;= n, m &amp;lt;= 100。
-　　对于所有评测用例，2 &amp;lt;= n, m &amp;lt;= 1000，1 &amp;lt;= r &amp;lt;= n，1 &amp;lt;= c &amp;lt;= m。&lt;/p&gt;
+&lt;p&gt;对于 30% 的评测用例，2 &amp;lt;= n, m &amp;lt;= 20。&lt;/p&gt;
+&lt;p&gt;对于 70% 的评测用例，2 &amp;lt;= n, m &amp;lt;= 100。&lt;/p&gt;
+&lt;p&gt;对于所有评测用例，2 &amp;lt;= n, m &amp;lt;= 1000，1 &amp;lt;= r &amp;lt;= n，1 &amp;lt;= c &amp;lt;= m。&lt;/p&gt;
+&lt;h3 id=&#34;思路与代码-2&#34;&gt;思路与代码&lt;/h3&gt;
+&lt;p&gt;这题数据范围太小，四个while暴力一个一个填数，填到$r$行$c$列即可，下面是随便找的代码（网上博客里面填蛇形矩阵的，如果没记错估计是copy的紫书的）&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;tot = a[x = 0][y = 0] = 1;
+while (tot&amp;lt;n*m)
+{
+		while (y + 1&amp;lt;n&amp;amp;&amp;amp;!a[x][y + 1])a[x][++y] = ++tot;
+		while (x + 1&amp;lt;m&amp;amp;&amp;amp;!a[x + 1][y])a[++x][y] = ++tot;
+		while (y - 1 &amp;gt;= 0 &amp;amp;&amp;amp; !a[x][y - 1])a[x][--y] = ++tot;
+		while (x - 1 &amp;gt;= 0 &amp;amp;&amp;amp; !a[x - 1][y])a[--x][y] = ++tot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里只放了核心代码，对于初学者来说可能不太容易懂。我初接触算法竞赛时，看到紫书上这个代码，也有点迷糊（刘汝佳代码都比较精炼）。如果不懂，建议智商跟着画一画，或者在Excel里面填着看。&lt;/p&gt;
+&lt;p&gt;不过我还是得整点活，上述代码时间复杂度肯定是$O(nm)$，数据范围再大点呢？显然容易超时。有没有公式可以让我们快速求解呢？&lt;/p&gt;
+&lt;p&gt;若用$rect[i][j]$表示螺旋矩阵$i$行$j$列的数字，那么对于$n$行$m$列的螺旋矩阵的最外圈，我们可以发现其遵循下面公式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;$rect[1][j]=j$&lt;/li&gt;
+&lt;li&gt;$rect[i][m]=m+i-1$&lt;/li&gt;
+&lt;li&gt;$rect[n][j]=n+2*m-2-j+1$&lt;/li&gt;
+&lt;li&gt;$rect[i][1]=2*(n+m)-4-i+2$&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这只是最外圈的公式，还要不要继续推下去呢？再推太麻烦了，其实一个矩阵可以被拆成$(n+1)/2$个外圈，分治即可。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/**
+  * @Project lanqiao_provincial_simulation
+  * @Filename 7
+  * @Author Visors
+  * @Date 2020/4/25 9:14
+  * @Version 1.0
+  * @Description 螺旋矩阵
+  **/
+
+#include &amp;lt;iostream&amp;gt;
+
+using namespace std;
+
+int n, m, r, c;
+
+int calc(int row, int col, int i, int j) {
+    //如果在当前矩阵最外圈，直接公式求解
+    if (i == 1)
+        return j;
+    if (j == col)
+        return col + i - 1;
+    if (i == row)
+        return row + 2 * col - 2 - j + 1;
+    if (j == 1)
+        return 2 * (row + col) - 4 - i + 2;
+    //带着数字进入子矩阵求解
+    return calc(row - 2, col - 2, i - 1, j - 1) + 2 * (row + col) - 4;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m &amp;gt;&amp;gt; r &amp;gt;&amp;gt; c;
+    cout &amp;lt;&amp;lt; calc(n, m, r, c) &amp;lt;&amp;lt; endl;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
 &lt;h3 id=&#34;摆动序列&#34;&gt;摆动序列&lt;/h3&gt;
 &lt;h4 id=&#34;问题描述-7&#34;&gt;问题描述&lt;/h4&gt;
-&lt;p&gt;　　如果一个序列的奇数项都比前一项大，偶数项都比前一项小，则称为一个摆动序列。即 a[2i]&amp;lt;a[2i-1], a[2i+1]&amp;gt;a[2i]。
-　　小明想知道，长度为 m，每个数都是 1 到 n 之间的正整数的摆动序列一共有多少个。&lt;/p&gt;
+&lt;p&gt;如果一个序列的奇数项都比前一项大，偶数项都比前一项小，则称为一个摆动序列。即 a[2i]&amp;lt;a[2i-1], a[2i+1]&amp;gt;a[2i]。&lt;/p&gt;
+&lt;p&gt;小明想知道，长度为 m，每个数都是 1 到 n 之间的正整数的摆动序列一共有多少个。&lt;/p&gt;
 &lt;h4 id=&#34;输入格式-3&#34;&gt;输入格式&lt;/h4&gt;
-&lt;p&gt;　　输入一行包含两个整数 m，n。&lt;/p&gt;
+&lt;p&gt;输入一行包含两个整数 m，n。&lt;/p&gt;
 &lt;h4 id=&#34;输出格式-3&#34;&gt;输出格式&lt;/h4&gt;
-&lt;p&gt;　　输出一个整数，表示答案。答案可能很大，请输出答案除以10000的余数。&lt;/p&gt;
+&lt;p&gt;输出一个整数，表示答案。答案可能很大，请输出答案除以10000的余数。&lt;/p&gt;
 &lt;h4 id=&#34;样例输入-3&#34;&gt;样例输入&lt;/h4&gt;
-&lt;p&gt;3 4&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;3 4&lt;/code&gt;&lt;/p&gt;
 &lt;h4 id=&#34;样例输出-3&#34;&gt;样例输出&lt;/h4&gt;
-&lt;p&gt;14&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;14&lt;/code&gt;&lt;/p&gt;
 &lt;h4 id=&#34;样例说明-1&#34;&gt;样例说明&lt;/h4&gt;
-&lt;p&gt;　　以下是符合要求的摆动序列：
-　　2 1 2
-　　2 1 3
-　　2 1 4
-　　3 1 2
-　　3 1 3
-　　3 1 4
-　　3 2 3
-　　3 2 4
-　　4 1 2
-　　4 1 3
-　　4 1 4
-　　4 2 3
-　　4 2 4
-　　4 3 4&lt;/p&gt;
+&lt;p&gt;以下是符合要求的摆动序列：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;2 1 2
+2 1 3
+2 1 4
+3 1 2
+3 1 3
+3 1 4
+3 2 3
+3 2 4
+4 1 2
+4 1 3
+4 1 4
+4 2 3
+4 2 4
+4 3 4
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;评测用例规模与约定-3&#34;&gt;评测用例规模与约定&lt;/h4&gt;
-&lt;p&gt;　　对于 20% 的评测用例，1 &amp;lt;= n, m &amp;lt;= 5；
-　　对于 50% 的评测用例，1 &amp;lt;= n, m &amp;lt;= 10；
-　　对于 80% 的评测用例，1 &amp;lt;= n, m &amp;lt;= 100；
-　　对于所有评测用例，1 &amp;lt;= n, m &amp;lt;= 1000。&lt;/p&gt;
+&lt;p&gt;对于 20% 的评测用例，1 &amp;lt;= n, m &amp;lt;= 5；&lt;/p&gt;
+&lt;p&gt;对于 50% 的评测用例，1 &amp;lt;= n, m &amp;lt;= 10；&lt;/p&gt;
+&lt;p&gt;对于 80% 的评测用例，1 &amp;lt;= n, m &amp;lt;= 100；&lt;/p&gt;
+&lt;p&gt;对于所有评测用例，1 &amp;lt;= n, m &amp;lt;= 1000。&lt;/p&gt;
+&lt;h3 id=&#34;思路与代码-3&#34;&gt;思路与代码&lt;/h3&gt;
+&lt;p&gt;这题很多人都说是DP，其实也算不上是DP吧，因为递推就可以了，没有什么“决策”可言。&lt;/p&gt;
+&lt;p&gt;若令$f[m][n]$为长度为$m$，以$n$结尾的方案数，那么有&lt;/p&gt;
+&lt;p&gt;$f[i][j]=\sum{f[i-1][t]},(t&amp;lt;j)$&lt;/p&gt;
+&lt;p&gt;对这个式子不理解？看下后面的代码应该就明白了。&lt;/p&gt;
+&lt;p&gt;很明显我们需要枚举$i$和$j$，并且还要计算$\sum$值，这样做的时间复杂度是$O(mn^2)$，显然超出的范围限制（终于？？）。但无需惊慌，对于连续求和，我们可以用前缀和优化一下，时间复杂度即降到$O(mn)$&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/**
+  * @Project lanqiao_provincial_simulation
+  * @Filename 8
+  * @Author Visors
+  * @Date 2020/4/25 9:27
+  * @Version 1.0
+  * @Description 摆动序列
+  **/
+
+#include&amp;lt;iostream&amp;gt;
+
+using namespace std;
+const int N = 1000 + 5, MOD = 10000;
+int m, n, ans = 0;
+int f[N][N]; //f[i][j]为长度为i，以j结尾的方案数
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cin &amp;gt;&amp;gt; m &amp;gt;&amp;gt; n;
+    for (int i = 1; i &amp;lt;= n; i++) f[1][i] = 1; //长度为1，以谁结尾都是一种方案，递推起点
+    for (int i = 2; i &amp;lt;= m; i++) {
+        int sum = 0;
+        if (i &amp;amp; 1) { //奇数与1得1
+            //奇数项，从前开始
+            for (int j = 1; j &amp;lt;= n; j++) {
+                //前缀和优化
+                f[i][j] += sum;
+                f[i][j] %= MOD;
+                sum += f[i - 1][j];
+                sum %= MOD;
+            }
+        } else {
+            //偶数项，从后开始
+            for (int j = n; j &amp;gt;= 1; j--) {
+                //前缀和优化
+                f[i][j] += sum;
+                f[i][j] %= MOD;
+                sum += f[i - 1][j];
+                sum %= MOD;
+            }
+        }
+    }
+    for (int i = 1; i &amp;lt;= n; i++) {
+        ans += f[m][i];
+        ans %= MOD;
+    }
+    cout &amp;lt;&amp;lt; ans &amp;lt;&amp;lt; endl;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
 &lt;h3 id=&#34;户户通电&#34;&gt;户户通电&lt;/h3&gt;
 &lt;h4 id=&#34;问题描述-8&#34;&gt;问题描述&lt;/h4&gt;
-&lt;p&gt;　　2015年，全中国实现了户户通电。作为一名电力建设者，小明正在帮助一带一路上的国家通电。
-　　这一次，小明要帮助 n 个村庄通电，其中 1 号村庄正好可以建立一个发电站，所发的电足够所有村庄使用。
-　　现在，这 n 个村庄之间都没有电线相连，小明主要要做的是架设电线连接这些村庄，使得所有村庄都直接或间接的与发电站相通。
-　　小明测量了所有村庄的位置（坐标）和高度，如果要连接两个村庄，小明需要花费两个村庄之间的坐标距离加上高度差的平方，形式化描述为坐标为 (x_1, y_1) 高度为 h_1 的村庄与坐标为 (x_2, y_2) 高度为 h_2 的村庄之间连接的费用为
-　　sqrt((x_1-x_2)&lt;em&gt;(x_1-x_2)+(y_1-y_2)&lt;/em&gt;(y_1-y_2))+(h_1-h_2)*(h_1-h_2)。
-　　在上式中 sqrt 表示取括号内的平方根。请注意括号的位置，高度的计算方式与横纵坐标的计算方式不同。
-　　由于经费有限，请帮助小明计算他至少要花费多少费用才能使这 n 个村庄都通电。&lt;/p&gt;
+&lt;p&gt;2015年，全中国实现了户户通电。作为一名电力建设者，小明正在帮助一带一路上的国家通电。&lt;/p&gt;
+&lt;p&gt;这一次，小明要帮助 n 个村庄通电，其中 1 号村庄正好可以建立一个发电站，所发的电足够所有村庄使用。&lt;/p&gt;
+&lt;p&gt;现在，这 n 个村庄之间都没有电线相连，小明主要要做的是架设电线连接这些村庄，使得所有村庄都直接或间接的与发电站相通。&lt;/p&gt;
+&lt;p&gt;小明测量了所有村庄的位置（坐标）和高度，如果要连接两个村庄，小明需要花费两个村庄之间的坐标距离加上高度差的平方，形式化描述为坐标为 (x_1, y_1) 高度为 h_1 的村庄与坐标为 (x_2, y_2) 高度为 h_2 的村庄之间连接的费用为&lt;/p&gt;
+&lt;p&gt;sqrt((x_1-x_2)&lt;em&gt;(x_1-x_2)+(y_1-y_2)&lt;/em&gt;(y_1-y_2))+(h_1-h_2)*(h_1-h_2)。&lt;/p&gt;
+&lt;p&gt;在上式中 sqrt 表示取括号内的平方根。请注意括号的位置，高度的计算方式与横纵坐标的计算方式不同。&lt;/p&gt;
+&lt;p&gt;由于经费有限，请帮助小明计算他至少要花费多少费用才能使这 n 个村庄都通电。&lt;/p&gt;
 &lt;h4 id=&#34;输入格式-4&#34;&gt;输入格式&lt;/h4&gt;
-&lt;p&gt;　　输入的第一行包含一个整数 n ，表示村庄的数量。
-　　接下来 n 行，每个三个整数 x, y, h，分别表示一个村庄的横、纵坐标和高度，其中第一个村庄可以建立发电站。&lt;/p&gt;
+&lt;p&gt;输入的第一行包含一个整数 n ，表示村庄的数量。&lt;/p&gt;
+&lt;p&gt;接下来 n 行，每个三个整数 x, y, h，分别表示一个村庄的横、纵坐标和高度，其中第一个村庄可以建立发电站。&lt;/p&gt;
 &lt;h4 id=&#34;输出格式-4&#34;&gt;输出格式&lt;/h4&gt;
-&lt;p&gt;　　输出一行，包含一个实数，四舍五入保留 2 位小数，表示答案。&lt;/p&gt;
+&lt;p&gt;输出一行，包含一个实数，四舍五入保留 2 位小数，表示答案。&lt;/p&gt;
 &lt;h4 id=&#34;样例输入-4&#34;&gt;样例输入&lt;/h4&gt;
-&lt;p&gt;4
-1 1 3
-9 9 7
-8 8 6
-4 5 4&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;4&lt;/code&gt;
+&lt;code&gt;1 1 3&lt;/code&gt;
+&lt;code&gt;9 9 7&lt;/code&gt;
+&lt;code&gt;8 8 6&lt;/code&gt;
+&lt;code&gt;4 5 4&lt;/code&gt;&lt;/p&gt;
 &lt;h4 id=&#34;样例输出-4&#34;&gt;样例输出&lt;/h4&gt;
-&lt;p&gt;17.41&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;17.41&lt;/code&gt;&lt;/p&gt;
 &lt;h4 id=&#34;评测用例规模与约定-4&#34;&gt;评测用例规模与约定&lt;/h4&gt;
-&lt;p&gt;　　对于 30% 的评测用例，1 &amp;lt;= n &amp;lt;= 10；
-　　对于 60% 的评测用例，1 &amp;lt;= n &amp;lt;= 100；
-　　对于所有评测用例，1 &amp;lt;= n &amp;lt;= 1000，0 &amp;lt;= x, y, h &amp;lt;= 10000。&lt;/p&gt;
+&lt;p&gt;对于 30% 的评测用例，1 &amp;lt;= n &amp;lt;= 10；&lt;/p&gt;
+&lt;p&gt;对于 60% 的评测用例，1 &amp;lt;= n &amp;lt;= 100；&lt;/p&gt;
+&lt;p&gt;对于所有评测用例，1 &amp;lt;= n &amp;lt;= 1000，0 &amp;lt;= x, y, h &amp;lt;= 10000。&lt;/p&gt;
+&lt;h3 id=&#34;思路与代码-4&#34;&gt;思路与代码&lt;/h3&gt;
+&lt;p&gt;吐槽：这是什么&lt;del&gt;魔怔&lt;/del&gt;距离计算公式？&lt;/p&gt;
+&lt;p&gt;不过好在题目“好心”提示了一下，所以问题不大。&lt;/p&gt;
+&lt;p&gt;读完题目，发现这是一道最小生成树板子题目。你只需，根据&lt;del&gt;魔怔&lt;/del&gt;距离公式建出完全图，然后套上最小生成树算法得板子即可。值得注意的是，由于本题是完全图，总共有$\frac{n(n-1)}{2}$条边，属于稠密图&lt;del&gt;确信&lt;/del&gt;，由于$prim$算法在稠密图上表现由于$Kruskal$算法，所以我们采用堆优化得$prim$算法（如果不知道为啥要堆优化，可以查阅一下相关资料，这两个算法应该是离散数学里面讲过的）&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/**
+  * @Project lanqiao_provincial_simulation
+  * @Filename 9
+  * @Author Visors
+  * @Date 2020/4/25 9:47
+  * @Version 1.0
+  * @Description 户户通电
+  **/
+
+#include &amp;lt;cstdio&amp;gt;
+#include &amp;lt;cmath&amp;gt;
+#include &amp;lt;queue&amp;gt;
+
+using namespace std;
+const int N = 1000 + 5;
+const double oo = sqrt(10000 * 10000 + 10000 * 10000) + 10000 * 10000 + 5;
+int n;
+double G[N][N], lowCost[N];
+bool book[N];
+
+struct Node {
+    double x, y, h;
+
+    Node() : x(0), y(0), h(0) {}
+
+    Node(double x, double y, double h) : x(x), y(y), h(h) {}
+} node[N];
+
+struct Elem {
+    int num;
+    double dist;
+
+    Elem() {}
+
+    Elem(int num, double dist) : num(num), dist(dist) {}
+
+    //重载&amp;lt;使优先队列为最小堆
+    bool operator&amp;lt;(const Elem &amp;amp;x) const {
+        return dist &amp;gt; x.dist;
+    }
+};
+
+priority_queue&amp;lt;Elem&amp;gt; pq;
+
+double prim() {
+    //初始化
+    for (int i = 1; i &amp;lt;= n; i++) {
+        lowCost[i] = G[1][i];
+        pq.push(Elem(i,lowCost[i]));
+    }
+    lowCost[1] = -oo;
+    double tot = 0.0;
+    int count = 1;
+    Elem tmp;
+    while (1) {
+        if (count == n) break;
+        //取有效堆顶，即为最近顶点
+        while (!pq.empty()) {
+            tmp = pq.top();
+            pq.pop();
+            if (lowCost[tmp.num] != -oo) break;
+        }
+        tot += tmp.dist;
+        lowCost[tmp.num] = -oo;
+        for (int i = 1; i &amp;lt;= n; i++) {
+            if (lowCost[i] != -oo &amp;amp;&amp;amp; G[tmp.num][i] &amp;lt; lowCost[i]) {
+                lowCost[i] = G[tmp.num][i];
+                pq.push(Elem(i,lowCost[i]));
+            }
+        }
+        count++;
+    }
+    return tot;
+}
+
+int main() {
+    scanf(&amp;quot;%d&amp;quot;, &amp;amp;n);
+    double x, y, h;
+    for (int i = 1; i &amp;lt;= n; i++) {
+        scanf(&amp;quot;%lf%lf%lf&amp;quot;, &amp;amp;x, &amp;amp;y, &amp;amp;h);
+        node[i] = Node(x, y, h);
+    }
+    //建图
+    for (int i = 1; i &amp;lt;= n; i++)
+        for (int j = 1; j &amp;lt;= i; j++) {
+            if (i == j) G[i][j] = 0;
+            else {
+                x = (node[i].x - node[j].x) * (node[i].x - node[j].x);
+                y = (node[i].y - node[j].y) * (node[i].y - node[j].y);
+                h = (node[i].h - node[j].h) * (node[i].h - node[j].h);
+                G[i][j] = G[j][i] = sqrt(x + y) + h;
+            }
+        }
+    printf(&amp;quot;%.2lf\n&amp;quot;,prim());
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;因为这是我临场拼的板子，所以可能写的有点过长。&lt;/p&gt;
+&lt;hr&gt;
 &lt;h3 id=&#34;郊外植树&#34;&gt;郊外植树&lt;/h3&gt;
 &lt;h4 id=&#34;问题描述-9&#34;&gt;问题描述&lt;/h4&gt;
-&lt;p&gt;　　小明和朋友们一起去郊外植树，他们带了一些在自己实验室精心研究出的小树苗。
-　　小明和朋友们一共有 n 个人，他们经过精心挑选，在一块空地上每个人挑选了一个适合植树的位置，总共 n 个。他们准备把自己带的树苗都植下去。
-　　然而，他们遇到了一个困难：有的树苗比较大，而有的位置挨太近，导致两棵树植下去后会撞在一起。
-　　他们将树看成一个圆，圆心在他们找的位置上。如果两棵树对应的圆相交，这两棵树就不适合同时植下（相切不受影响），称为两棵树冲突。
-　　小明和朋友们决定先合计合计，只将其中的一部分树植下去，保证没有互相冲突的树。他们同时希望这些树所能覆盖的面积和（圆面积和）最大。&lt;/p&gt;
+&lt;p&gt;小明和朋友们一起去郊外植树，他们带了一些在自己实验室精心研究出的小树苗。&lt;/p&gt;
+&lt;p&gt;小明和朋友们一共有 n 个人，他们经过精心挑选，在一块空地上每个人挑选了一个适合植树的位置，总共 n 个。他们准备把自己带的树苗都植下去。&lt;/p&gt;
+&lt;p&gt;然而，他们遇到了一个困难：有的树苗比较大，而有的位置挨太近，导致两棵树植下去后会撞在一起。&lt;/p&gt;
+&lt;p&gt;他们将树看成一个圆，圆心在他们找的位置上。如果两棵树对应的圆相交，这两棵树就不适合同时植下（相切不受影响），称为两棵树冲突。&lt;/p&gt;
+&lt;p&gt;小明和朋友们决定先合计合计，只将其中的一部分树植下去，保证没有互相冲突的树。他们同时希望这些树所能覆盖的面积和（圆面积和）最大。&lt;/p&gt;
 &lt;h4 id=&#34;输入格式-5&#34;&gt;输入格式&lt;/h4&gt;
-&lt;p&gt;　　输入的第一行包含一个整数 n ，表示人数，即准备植树的位置数。
-　　接下来 n 行，每行三个整数 x, y, r，表示一棵树在空地上的横、纵坐标和半径。&lt;/p&gt;
+&lt;p&gt;输入的第一行包含一个整数 n ，表示人数，即准备植树的位置数。&lt;/p&gt;
+&lt;p&gt;接下来 n 行，每行三个整数 x, y, r，表示一棵树在空地上的横、纵坐标和半径。&lt;/p&gt;
 &lt;h4 id=&#34;输出格式-5&#34;&gt;输出格式&lt;/h4&gt;
-&lt;p&gt;　　输出一行包含一个整数，表示在不冲突下可以植树的面积和。由于每棵树的面积都是圆周率的整数倍，请输出答案除以圆周率后的值（应当是一个整数）。&lt;/p&gt;
+&lt;p&gt;输出一行包含一个整数，表示在不冲突下可以植树的面积和。由于每棵树的面积都是圆周率的整数倍，请输出答案除以圆周率后的值（应当是一个整数）。&lt;/p&gt;
 &lt;h4 id=&#34;样例输入-5&#34;&gt;样例输入&lt;/h4&gt;
-&lt;p&gt;6
-1 1 2
-1 4 2
-1 7 2
-4 1 2
-4 4 2
-4 7 2&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;6&lt;/code&gt;
+&lt;code&gt;1 1 2&lt;/code&gt;
+&lt;code&gt;1 4 2&lt;/code&gt;
+&lt;code&gt;1 7 2&lt;/code&gt;
+&lt;code&gt;4 1 2&lt;/code&gt;
+&lt;code&gt;4 4 2&lt;/code&gt;
+&lt;code&gt;4 7 2&lt;/code&gt;&lt;/p&gt;
 &lt;h4 id=&#34;样例输出-5&#34;&gt;样例输出&lt;/h4&gt;
-&lt;p&gt;12&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;12&lt;/code&gt;&lt;/p&gt;
 &lt;h4 id=&#34;评测用例规模与约定-5&#34;&gt;评测用例规模与约定&lt;/h4&gt;
-&lt;p&gt;　　对于 30% 的评测用例，1 &amp;lt;= n &amp;lt;= 10；
-　　对于 60% 的评测用例，1 &amp;lt;= n &amp;lt;= 20；
-　　对于所有评测用例，1 &amp;lt;= n &amp;lt;= 30，0 &amp;lt;= x, y &amp;lt;= 1000，1 &amp;lt;= r &amp;lt;= 1000。&lt;/p&gt;
+&lt;p&gt;对于 30% 的评测用例，1 &amp;lt;= n &amp;lt;= 10；&lt;/p&gt;
+&lt;p&gt;对于 60% 的评测用例，1 &amp;lt;= n &amp;lt;= 20；&lt;/p&gt;
+&lt;p&gt;对于所有评测用例，1 &amp;lt;= n &amp;lt;= 30，0 &amp;lt;= x, y &amp;lt;= 1000，1 &amp;lt;= r &amp;lt;= 1000。&lt;/p&gt;
+&lt;h3 id=&#34;思路与代码-5&#34;&gt;思路与代码&lt;/h3&gt;
+&lt;p&gt;如何判断两棵树是否干涉，其实就是利用高中学过的圆与圆间位置关系来判断即可，也就是两圆心（种树的位置）间距离小于两圆半径之和即为相交。&lt;/p&gt;
+&lt;p&gt;这题树很少，直接暴力即可，但纯暴力还是有点吃紧，我们可以稍作剪枝。前面已经说了判断两棵树是否干涉的方法，我们可以考虑预处理任意两树是否发生干涉的数组，在搜索时，一旦出现干涉，立刻返回，即采用可行性剪枝（听说也叫左剪枝，这是根据搜索树形态的变化命名的）。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/**
+  * @Project lanqiao_provincial_simulation
+  * @Filename 10
+  * @Author Visors
+  * @Date 2020/4/25 10:24
+  * @Version 1.0
+  * @Description 郊外植树
+  **/
+
+#include&amp;lt;iostream&amp;gt;
+
+using namespace std;
+const int N = 35;
+int n, ans;
+int x[N], y[N], r[N];
+bool book[N], isIntersect[N][N];
+
+void dfs(int step) {
+    if (step &amp;gt; n) {
+        int sum = 0;
+        for (int i = 1; i &amp;lt;= n; i++)
+            if (book[i]) sum += (r[i] * r[i]); //PI*r*r/PI
+        ans = max(sum, ans);
+        return;
+    }
+    book[step] = false;
+    dfs(step + 1); //不种该树搜
+    for (int i = 1; i &amp;lt; step; i++)
+        if (book[i] &amp;amp;&amp;amp; isIntersect[i][step]) return; //可行性剪枝
+    book[step] = true;
+    dfs(step + 1); //种该树搜
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cin &amp;gt;&amp;gt; n;
+    for (int i = 1; i &amp;lt;= n; i++) cin &amp;gt;&amp;gt; x[i] &amp;gt;&amp;gt; y[i] &amp;gt;&amp;gt; r[i];
+    //判断圆与圆间位置关系
+    for (int i = 1; i &amp;lt;= n; i++)
+        for (int j = i + 1; j &amp;lt;= n; j++)
+            isIntersect[i][j] = isIntersect[j][i] = ((x[i] - x[j]) * (x[i] - x[j]) + (y[i] - y[j]) * (y[i] - y[j]) &amp;lt;
+                                                     (r[i] + r[j]) * (r[i] + r[j]));
+    dfs(1);
+    cout &amp;lt;&amp;lt; ans &amp;lt;&amp;lt; endl;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;之前以为校赛模拟赛会比较简单，省赛模拟赛会难一些，事实上好像难度接近，甚至这场难度还低于前面某场（之前看星星的题目我线下没写出满分）？所以我估计省赛时也就是这样的难度。也就是说，更多的考察一些数学基础与思维，再带上一些常用算法。&lt;/p&gt;
+&lt;p&gt;由于蓝桥不能带板子，所以从练习时就要理解所有的算法，以便自己在赛场上能思路清晰的独立敲出来，背代码是吃力不讨好的。推荐备战蓝桥的同学多刷刷蓝桥题库，如果对算法题有进一步兴趣，也可以刷刷leetcode、Codeforces等网站的题目，对以后求职会有很大帮助。&lt;del&gt;也欢迎来参加我们实验室组织的各项比赛XD&lt;/del&gt;&lt;/p&gt;
 </description>
     </item>
     
