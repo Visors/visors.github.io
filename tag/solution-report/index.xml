@@ -41,7 +41,7 @@
 &lt;h3 id=&#34;改编二&#34;&gt;改编二&lt;/h3&gt;
 &lt;p&gt;一个包含有$n$个结点的无向连通图，最多包含多少条边？&lt;/p&gt;
 &lt;h4 id=&#34;戏说-2&#34;&gt;戏说&lt;/h4&gt;
-&lt;p&gt;该图应为完全图，边数为$\frac{(1+(n-1))&lt;em&gt;(n-1)}{2}=\frac{n&lt;/em&gt;(n-1)}{2}$&lt;/p&gt;
+&lt;p&gt;该图应为完全图，边数为$\frac{(1+(n-1))(n-1)}{2} = \frac{n(n-1)}{2}$&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;问题描述-2&#34;&gt;问题描述&lt;/h3&gt;
 &lt;p&gt;在计算机存储中，12.5MB是多少字节？&lt;/p&gt;
