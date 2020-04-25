@@ -5,12 +5,132 @@
     <link>https://visors.github.io/tag/codeforces/</link>
       <atom:link href="https://visors.github.io/tag/codeforces/index.xml" rel="self" type="application/rss+xml" />
     <description>Codeforces</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 22 Apr 2020 21:13:22 +0800</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Fri, 24 Apr 2020 09:57:45 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Codeforces</title>
       <link>https://visors.github.io/tag/codeforces/</link>
     </image>
+    
+    <item>
+      <title>Codeforces Round 637 Div.2</title>
+      <link>https://visors.github.io/post/codeforces-round-637-div.2/</link>
+      <pubDate>Fri, 24 Apr 2020 09:57:45 +0800</pubDate>
+      <guid>https://visors.github.io/post/codeforces-round-637-div.2/</guid>
+      <description>&lt;h2 id=&#34;碎碎念&#34;&gt;碎碎念&lt;/h2&gt;
+&lt;p&gt;终于上分了真的，感觉可以冲到一两千名的（C代码出的时候提交还不多），结果C沉了，最终只有六千名。毕竟这次手稍微快hhh。本来以为我C的代码够简洁了，没想到正解好像更简洁……&lt;/p&gt;
+&lt;p&gt;这次真的是非常遗憾，C和D都接近想到正解，却没有最终AC。另外吐槽一下本场的题面，是真的难读……不过题目质量还是在线的。&lt;/p&gt;
+&lt;h2 id=&#34;解题报告&#34;&gt;解题报告&lt;/h2&gt;
+&lt;h3 id=&#34;c---nastya-and-strange-generatorhttpscodeforcescomcontest1341problemc&#34;&gt;
+&lt;a href=&#34;https://codeforces.com/contest/1341/problem/C&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;C - Nastya and Strange Generator&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;C的题目很难读，直接把LYH读崩了，所以这里我先简要翻译一下。&lt;/p&gt;
+&lt;p&gt;本题需要我们按照规则检查题目给出的排列能否被生成。开始时排列$p$为空，然后我们按照以下规则依次将$1\sim n$填入排列，一开始$i=1$：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;计算$r$数组，$r[j]=min(t\in [j,n])$，其中$p[t]~is~empty$即没有被填过，如果不存在这样一个$j$，我们可以用$0$之类的特殊数表示&lt;/li&gt;
+&lt;li&gt;计算$count$数组，$count[j]$为$r[]$中$j$的数目&lt;/li&gt;
+&lt;li&gt;$count$数组中值最大的下标为$i$的可放置点&lt;/li&gt;
+&lt;li&gt;将$i$放入排列，$i++$，转到1.，直到$n$个数被填完&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;根据这个规则，再结合样例解释，就能够理解了：&lt;/p&gt;
+&lt;p&gt;![](C Note.png)&lt;/p&gt;
+&lt;p&gt;如果暴力，显然$O(n^2)$超时，这两个$n$分别是枚举每位数的时间和检查每个数能不能填的时间。我们可以考虑优化其中之一，枚举每位数显然很难优化，就看能否优化检查每个数的时间，只要降到$O(logn)$以下，本题就可解决。&lt;/p&gt;
+&lt;p&gt;于是乎我们可以研究一下$r$和$count$的生成方法，很容易发现这两个数组在填$i$和$i+1$时是有一定的转移规律的。然后我想到的规律是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;上一个数填在最右边，那么前面的$r$数组不会受影响，进而$count$数组也不会受影响，所以当前数可以填在任意空余位置。&lt;/li&gt;
+&lt;li&gt;上一个数不在最右边，那么它只会直接影响它自己的$r$，使得其对应下标$r$变为其右边没填的最近的位置，进而打破$count$数组的平衡，使那个位置的count突然比别的多，这时候这个数必须填在那。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/**
+  * @Project Codeforces_Round__637__Div__2_
+  * @Filename Nastya_and_Strange_Generator
+  * @Author Visors
+  * @Date 2020/4/23 23:56
+  * @Version 1.0
+  * @Description TODO
+  **/
+
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;cstring&amp;gt;
+
+using namespace std;
+const int N = 1e5 + 5;
+int T, n;
+int pos[N];
+bool book[N];
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cin &amp;gt;&amp;gt; T;
+    while (T--) {
+        memset(book, 0, sizeof(book));
+        cin &amp;gt;&amp;gt; n;
+        for (int i = 1, t; i &amp;lt;= n; i++) {
+            cin &amp;gt;&amp;gt; t;
+            pos[t] = i;
+        }
+        int r = n;
+        bool flag = true;
+        book[pos[1]] = true;
+        for (int i = 2; i &amp;lt;= n; i++) {
+            if (pos[i - 1] != r) {
+                int tmp = pos[i - 1];
+                while (book[tmp]) tmp++;
+                if (tmp != pos[i]) {
+                    flag = false;
+                    break;
+                } else book[tmp] = true;
+            }
+            if (pos[i - 1] == r) {
+                book[pos[i]] = true;
+                r--;
+            }
+        }
+        if (flag) cout &amp;lt;&amp;lt; &amp;quot;Yes&amp;quot; &amp;lt;&amp;lt; endl;
+        else cout &amp;lt;&amp;lt; &amp;quot;No&amp;quot; &amp;lt;&amp;lt; endl;
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;但是在第二个测试点错了，希望有读者能帮我指出一下问题在哪里。&lt;/p&gt;
+&lt;p&gt;正解是判断有没有$p[i]-p[i-1]&amp;gt;1$，如果有那么不能生成。感觉跟我的比较像，不知道差异点是在哪里……&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/*
+  * @Filename Nastya_and_Strange_Generator.cpp
+  * @Author Visors
+  * @Date 2020/4/24 11:07
+  * @Version 1.0
+  * @Description TODO
+  **/
+
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;vector&amp;gt;
+
+using namespace std;
+int T, n;
+vector&amp;lt;int&amp;gt; p;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cin &amp;gt;&amp;gt; T;
+    while (T--) {
+        cin &amp;gt;&amp;gt; n;
+        p = vector&amp;lt;int&amp;gt;(n);
+        cin &amp;gt;&amp;gt; p[0];
+        bool flag = true;
+        for (int i = 1; i &amp;lt; n; i++) {
+            cin &amp;gt;&amp;gt; p[i];
+            if (p[i] - p[i - 1] &amp;gt; 1) flag = false;
+        }
+        if (flag) cout &amp;lt;&amp;lt; &amp;quot;Yes&amp;quot; &amp;lt;&amp;lt; endl;
+        else cout &amp;lt;&amp;lt; &amp;quot;No&amp;quot; &amp;lt;&amp;lt; endl;
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;cf77872094.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;to be continue……&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Codeforces Round 636 Div.3</title>
@@ -83,7 +203,7 @@ int main() {
 &lt;a href=&#34;https://codeforces.com/contest/1343/problem/E&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;E - Weights Distributing&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;这题虽然是2400分，但我觉得我是可写的，只是比赛连看都没看一眼，前面还需压缩时间。&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;这道题体面比较长，但其实核心问题比较简单：&lt;/p&gt;
+&lt;p&gt;这道题题面比较长，但其实核心问题比较简单：&lt;/p&gt;
 &lt;p&gt;给定$n$个点$m$条边的无向联通图，先给定$m$个边权$p_i$，问如何分配边权，能使从点$a$到点$b$，再从点$b$到点$c$走过的权值最小。&lt;/p&gt;
 &lt;p&gt;初读题目，可能会觉得这题过水——跑一遍从$a$到$b$的最短路，再跑一遍从$b$到$c$的最短路，然后贪心从小到大取边权，如果两个最短路中间有重复路段就优先取重复的部分。&lt;/p&gt;
 &lt;p&gt;这种想法有可取之处，即把最终选取的路径分为了两类：&lt;/p&gt;

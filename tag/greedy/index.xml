@@ -83,7 +83,7 @@ int main() {
 &lt;a href=&#34;https://codeforces.com/contest/1343/problem/E&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;E - Weights Distributing&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;这题虽然是2400分，但我觉得我是可写的，只是比赛连看都没看一眼，前面还需压缩时间。&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;这道题体面比较长，但其实核心问题比较简单：&lt;/p&gt;
+&lt;p&gt;这道题题面比较长，但其实核心问题比较简单：&lt;/p&gt;
 &lt;p&gt;给定$n$个点$m$条边的无向联通图，先给定$m$个边权$p_i$，问如何分配边权，能使从点$a$到点$b$，再从点$b$到点$c$走过的权值最小。&lt;/p&gt;
 &lt;p&gt;初读题目，可能会觉得这题过水——跑一遍从$a$到$b$的最短路，再跑一遍从$b$到$c$的最短路，然后贪心从小到大取边权，如果两个最短路中间有重复路段就优先取重复的部分。&lt;/p&gt;
 &lt;p&gt;这种想法有可取之处，即把最终选取的路径分为了两类：&lt;/p&gt;

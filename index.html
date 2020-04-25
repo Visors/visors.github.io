@@ -245,7 +245,7 @@
   <meta property="og:description" content="本科在读"><meta property="og:image" content="https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2020-04-23T14:08:02&#43;08:00">
+    <meta property="og:updated_time" content="2020-04-25T11:25:07&#43;08:00">
   
 
   
@@ -857,6 +857,224 @@
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
+      <a href="/post/%E8%93%9D%E6%A1%A5%E7%9C%81%E8%B5%9B%E6%A8%A1%E6%8B%9F/" >蓝桥省赛模拟</a>
+    </h3>
+
+    
+    <div class="article-style">
+      填空题 对于填空题，其实很多时候枚举啊之类的就完事了。但是作为整理，我认为认真的态度是把它当成独立的可以用编程解决的普适的问题来分析，所以下面我会写上每道题的题目改编及思路。
+ 问题描述 将LANQIAO中的字母重新排列，可以得到不同的单词，如LANQIAO、AAILNOQ等，注意这7个字母都要被用上，单词不一定有具体的英文意义。 请问，总共能排列如多少个不同的单词。
+答案 $2520$
+改编 给定一个字符串，求可以得到的排列数。
+戏说 根据组合数学原理，统计不同的字符数$n$，以及不同字符出现的个数$tot[i]$，那么结果即为$\frac{n!}{\prod_{i=1}^n{tot[i]!}}$
+ 问题描述 一个包含有2019个结点的无向连通图，最少包含多少条边？
+答案 $2018$
+改编一 一个包含有$n$个结点的无向连通图，最少包含多少条边？
+戏说 该图应为一条链，边数为$n-1$
+改编二 一个包含有$n$个结点的无向连通图，最多包含多少条边？
+戏说 该图应为完全图，边数为$\frac{(1+(n-1))(n-1)}{2}=\frac{n(n-1)}{2}$
+ 问题描述 在计算机存储中，12.5MB是多少字节？
+答案 $13107200$
+    </div>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+        
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/author/visors/">Visors</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Apr 25, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/lanqiao/">lanqiao</a>, <a href="/category/solution-report/">Solution Report</a></span>
+  
+
+</div>
+
+      
+    </div>
+
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
+      <a href="/post/codeforces-round-637-div.2/" >Codeforces Round 637 Div.2</a>
+    </h3>
+
+    
+    <div class="article-style">
+      碎碎念 终于上分了真的，感觉可以冲到一两千名的（C代码出的时候提交还不多），结果C沉了，最终只有六千名。毕竟这次手稍微快hhh。本来以为我C的代码够简洁了，没想到正解好像更简洁……
+这次真的是非常遗憾，C和D都接近想到正解，却没有最终AC。另外吐槽一下本场的题面，是真的难读……不过题目质量还是在线的。
+解题报告 C - Nastya and Strange Generator C的题目很难读，直接把LYH读崩了，所以这里我先简要翻译一下。
+本题需要我们按照规则检查题目给出的排列能否被生成。开始时排列$p$为空，然后我们按照以下规则依次将$1\sim n$填入排列，一开始$i=1$：
+ 计算$r$数组，$r[j]=min(t\in [j,n])$，其中$p[t]~is~empty$即没有被填过，如果不存在这样一个$j$，我们可以用$0$之类的特殊数表示 计算$count$数组，$count[j]$为$r[]$中$j$的数目 $count$数组中值最大的下标为$i$的可放置点 将$i$放入排列，$i++$，转到1.，直到$n$个数被填完  根据这个规则，再结合样例解释，就能够理解了：
+![](C Note.png)
+如果暴力，显然$O(n^2)$超时，这两个$n$分别是枚举每位数的时间和检查每个数能不能填的时间。我们可以考虑优化其中之一，枚举每位数显然很难优化，就看能否优化检查每个数的时间，只要降到$O(logn)$以下，本题就可解决。
+于是乎我们可以研究一下$r$和$count$的生成方法，很容易发现这两个数组在填$i$和$i+1$时是有一定的转移规律的。然后我想到的规律是：
+ 上一个数填在最右边，那么前面的$r$数组不会受影响，进而$count$数组也不会受影响，所以当前数可以填在任意空余位置。 上一个数不在最右边，那么它只会直接影响它自己的$r$，使得其对应下标$r$变为其右边没填的最近的位置，进而打破$count$数组的平衡，使那个位置的count突然比别的多，这时候这个数必须填在那。  /*** @Project Codeforces_Round__637__Div__2_* @Filename Nastya_and_Strange_Generator* @Author Visors* @Date 2020/4/23 23:56* @Version 1.
+    </div>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+        
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/author/visors/">Visors</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Apr 24, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/codeforces/">Codeforces</a>, <a href="/category/solution-report/">Solution Report</a></span>
+  
+
+</div>
+
+      
+    </div>
+
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
       <a href="/post/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BD%95%E4%B8%8D%E8%83%BD%E8%BD%BB%E4%BF%A1%E8%AF%84%E8%AE%BA/" >我们为何不能轻信评论</a>
     </h3>
 
@@ -1214,7 +1432,7 @@
           
           
           
-          <a href="/tag/codeforces/" style="font-size:0.7rem">Codeforces</a>
+          <a href="/tag/codeforces/" style="font-size:1.35rem">Codeforces</a>
         
           
           
@@ -1229,12 +1447,17 @@
           
           
           
+          <a href="/tag/lanqiao/" style="font-size:0.7rem">lanqiao</a>
+        
+          
+          
+          
           <a href="/tag/prefix-sum/" style="font-size:0.7rem">Prefix Sum</a>
         
           
           
           
-          <a href="/tag/solution-report/" style="font-size:0.7rem">Solution Report</a>
+          <a href="/tag/solution-report/" style="font-size:1.7302256254687514rem">Solution Report</a>
         
       </div>
     
