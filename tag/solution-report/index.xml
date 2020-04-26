@@ -391,6 +391,7 @@ int main() {
     return 0;
 }
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这题是NOIP2013花匠的弱化版，有兴趣可以深入了解一下。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;户户通电&#34;&gt;户户通电&lt;/h3&gt;
 &lt;h4 id=&#34;问题描述-8&#34;&gt;问题描述&lt;/h4&gt;
