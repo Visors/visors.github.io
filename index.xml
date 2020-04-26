@@ -5,12 +5,62 @@
     <link>https://visors.github.io/</link>
       <atom:link href="https://visors.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Visors的个人主页</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sat, 25 Apr 2020 11:25:07 +0800</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 26 Apr 2020 09:59:30 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Visors的个人主页</title>
       <link>https://visors.github.io/</link>
     </image>
+    
+    <item>
+      <title>使用vscode一键编译运行Java代码</title>
+      <link>https://visors.github.io/post/%E4%BD%BF%E7%94%A8vscode%E4%B8%80%E9%94%AE%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8Cjava%E4%BB%A3%E7%A0%81/</link>
+      <pubDate>Sun, 26 Apr 2020 09:59:30 +0800</pubDate>
+      <guid>https://visors.github.io/post/%E4%BD%BF%E7%94%A8vscode%E4%B8%80%E9%94%AE%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8Cjava%E4%BB%A3%E7%A0%81/</guid>
+      <description>&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;确保设备上已安装好Java编译环境（可以在命令行通过指令编译运行）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在vscode上安装插件Java Extension Pack&lt;img src=&#34;image-20200319082123511.png&#34; alt=&#34;image-20200319082123511&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在vscode上安装插件Code Runner&lt;img src=&#34;image-20200319082219635.png&#34; alt=&#34;image-20200319082219635&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;img src=&#34;image-20200319082343770.png&#34; alt=&#34;image-20200319082343770&#34;&gt;
+在设置内找到并勾选在终端内运行（否则无法输入）
+&lt;img src=&#34;image-20200319082505479.png&#34; alt=&#34;image-20200319082505479&#34;&gt;
+勾选运行前保存（也可以不勾选手动ctrl+s保存）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在工作文件夹下新建&amp;rdquo;.vscode&amp;quot;文件夹，新建设置文件&amp;quot;settings.json&amp;rdquo;，拷贝下面的代码，并作本地化修改（大部分设置已有注释，部分是cpp的设置，可自行修改）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;files.defaultLanguage&amp;quot;: &amp;quot;java&amp;quot;, // ctrl+N新建文件后默认的语言
+    &amp;quot;editor.formatOnType&amp;quot;: true, // （对于C/C++）输入分号后自动格式化当前这一行的代码
+    &amp;quot;editor.suggest.snippetsPreventQuickSuggestions&amp;quot;: false, // clangd的snippets有很多的跳转点，不用这个就必须手动触发Intellisense了
+    &amp;quot;editor.acceptSuggestionOnEnter&amp;quot;: &amp;quot;off&amp;quot;, // 我个人的习惯，按回车时一定是真正的换行，只有tab才会接受Intellisense
+    // &amp;quot;editor.snippetSuggestions&amp;quot;: &amp;quot;top&amp;quot;, // （可选）snippets显示在补全列表顶端，默认是inline
+    &amp;quot;code-runner.runInTerminal&amp;quot;: true, // 设置成false会在“输出”中输出，无法输入
+    &amp;quot;code-runner.executorMap&amp;quot;: {
+        &amp;quot;java&amp;quot;: &amp;quot;cd $dir &amp;amp;&amp;amp; javac -encoding utf-8 $fileName &amp;amp;&amp;amp; java $fileNameWithoutExt&amp;quot;,//这步非常重要，简单来说是指定了一键编译时发送给终端的命令的形式，默认是没有-encoding utf-8的，这样会导致中文乱码，手动添加可解决这一问题
+    }, // 控制Code Runner命令；未注释的仅适用于PowerShell（Win10默认），文件名中有空格也可以编译运行；注释掉的适用于cmd（win7默认），也适用于PS，文件名中有空格时无法运行
+    &amp;quot;code-runner.saveFileBeforeRun&amp;quot;: true, // run code前保存
+    &amp;quot;code-runner.preserveFocus&amp;quot;: true, // 若为false，run code后光标会聚焦到终端上。如果需要频繁输入数据可设为false
+    &amp;quot;code-runner.clearPreviousOutput&amp;quot;: false, // 每次run code前清空属于code runner的终端消息，默认false
+    &amp;quot;code-runner.ignoreSelection&amp;quot;: false, // 默认为false，效果是鼠标选中一块代码后可以单独执行
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;在代码页右键Run Code或使用快捷键ctrl+alt+N运行。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果run code报错，在main函数下面也有个run/debug。尝试使用那里的run&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
     
     <item>
       <title>蓝桥省赛模拟</title>
