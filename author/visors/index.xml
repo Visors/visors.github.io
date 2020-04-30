@@ -5,12 +5,50 @@
     <link>https://visors.github.io/author/visors/</link>
       <atom:link href="https://visors.github.io/author/visors/index.xml" rel="self" type="application/rss+xml" />
     <description>Visors</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Mon, 27 Apr 2020 09:43:15 +0800</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Thu, 30 Apr 2020 20:49:09 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Visors</title>
       <link>https://visors.github.io/author/visors/</link>
     </image>
+    
+    <item>
+      <title>Kotlin类语法及避雷</title>
+      <link>https://visors.github.io/post/kotlin%E7%B1%BB%E8%AF%AD%E6%B3%95%E5%8F%8A%E9%81%BF%E9%9B%B7/</link>
+      <pubDate>Thu, 30 Apr 2020 20:49:09 +0800</pubDate>
+      <guid>https://visors.github.io/post/kotlin%E7%B1%BB%E8%AF%AD%E6%B3%95%E5%8F%8A%E9%81%BF%E9%9B%B7/</guid>
+      <description>&lt;p&gt;Kotlin虽然基于Java语言，但很多语言特性都与Java不一样。这里记录了我学习Kotlin面向对象时的一些见解。&lt;/p&gt;
+&lt;p&gt;我们首先来看这样一段代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-kotlin&#34;&gt;class Person {
+    var name = &amp;quot;&amp;quot;
+    var age = 0
+    fun eat() {
+        println(&amp;quot;$name is eating. He is $age years old.&amp;quot;)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这是一个基本的类声明，我们创建了两个字段，并且编写了一个类函数。此时，如果我们想要编写其子类，比如Student，并写下了如下代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-kotlin&#34;&gt;class Student : Person() {
+    var sno = &amp;quot;&amp;quot;
+    var grade = 0
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我们会发现出现了编译错误——Person类是final的，无法被继承。&lt;/p&gt;
+&lt;p&gt;这是因为Kotlin默认类是无法被继承的，如果想要允许类被继承，需要使用open关键字开放对某类的继承，即像这样：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-kotlin&#34;&gt;open class Person {
+    var name = &amp;quot;&amp;quot;
+    var age = 0
+    fun eat() {
+        println(&amp;quot;$name is eating. He is $age years old.&amp;quot;)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可能你会疑惑，类被允许继承不是理所应当的吗？为何要多此一举手动开放继承权限呢？&lt;/p&gt;
+&lt;p&gt;这里涉及到了Kotlin语言的设计思想，《Effective Java》中曾经指出——如果一个类不是专门为继承而设计的，那么就应该主动将它加上final声明，禁止它可以被继承。这样可以避免一些未知的风险，而Kotlin则是贯彻这一理念，强制coder遵循这一思想。其实这也是一种安全性的体现。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;还有一些关于主次构造函数的辨析内容，写起来可能比较多，后续再进行补充。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Hack The Box注册方法</title>

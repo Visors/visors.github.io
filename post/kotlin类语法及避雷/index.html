@@ -27,10 +27,10 @@
   
     
   
-  <meta name="description" content="本科在读">
+  <meta name="description" content="想学好Kotlin，真的要先学好Java才行😂">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://visors.github.io/author/visors/">
+  <link rel="alternate" hreflang="en-us" href="https://visors.github.io/post/kotlin%E7%B1%BB%E8%AF%AD%E6%B3%95%E5%8F%8A%E9%81%BF%E9%9B%B7/">
 
   
 
@@ -215,14 +215,12 @@
   
 
   
-  <link rel="alternate" href="/author/visors/index.xml" type="application/rss+xml" title="Visors的个人主页">
-  
 
   <link rel="manifest" href="/index.webmanifest">
   <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="https://visors.github.io/author/visors/">
+  <link rel="canonical" href="https://visors.github.io/post/kotlin%E7%B1%BB%E8%AF%AD%E6%B3%95%E5%8F%8A%E9%81%BF%E9%9B%B7/">
 
   
   
@@ -238,18 +236,63 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Visors的个人主页">
-  <meta property="og:url" content="https://visors.github.io/author/visors/">
-  <meta property="og:title" content="Visors | Visors的个人主页">
-  <meta property="og:description" content="本科在读"><meta property="og:image" content="https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="og:url" content="https://visors.github.io/post/kotlin%E7%B1%BB%E8%AF%AD%E6%B3%95%E5%8F%8A%E9%81%BF%E9%9B%B7/">
+  <meta property="og:title" content="Kotlin类语法及避雷 | Visors的个人主页">
+  <meta property="og:description" content="想学好Kotlin，真的要先学好Java才行😂"><meta property="og:image" content="https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2020-04-30T20:49:09&#43;08:00">
+    
+      <meta property="article:published_time" content="2020-04-30T20:49:09&#43;08:00">
+    
+    <meta property="article:modified_time" content="2020-04-30T20:49:09&#43;08:00">
   
 
   
 
 
+    
 
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://visors.github.io/post/kotlin%E7%B1%BB%E8%AF%AD%E6%B3%95%E5%8F%8A%E9%81%BF%E9%9B%B7/"
+  },
+  "headline": "Kotlin类语法及避雷",
+  
+  "datePublished": "2020-04-30T20:49:09+08:00",
+  "dateModified": "2020-04-30T20:49:09+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Visors"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Visors的个人主页",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "想学好Kotlin，真的要先学好Java才行😂"
+}
+</script>
+
+  
 
   
 
@@ -257,10 +300,13 @@
   
 
 
+  
 
 
 
-  <title>Visors | Visors的个人主页</title>
+
+
+  <title>Kotlin类语法及避雷 | Visors的个人主页</title>
 
 </head>
 
@@ -381,7 +427,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/post"><span>All Posts</span></a>
+          <a class="nav-link  active" href="/post"><span>All Posts</span></a>
         </li>
 
         
@@ -507,60 +553,291 @@
 </nav>
 
 
+  <article class="article">
+
   
 
 
 
-<div class="universal-wrapper pt-3">
-  <h1>Visors</h1>
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Kotlin类语法及避雷</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/author/visors/">Visors</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Apr 30, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/kotlin/">Kotlin</a>, <a href="/category/experience/">Experience</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 </div>
 
 
-<section id="profile-page" class="pt-5">
-  <div class="container">
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>Kotlin虽然基于Java语言，但很多语言特性都与Java不一样。这里记录了我学习Kotlin面向对象时的一些见解。</p>
+<p>我们首先来看这样一段代码：</p>
+<pre><code class="language-kotlin">class Person {
+    var name = &quot;&quot;
+    var age = 0
+    fun eat() {
+        println(&quot;$name is eating. He is $age years old.&quot;)
+    }
+}
+</code></pre>
+<p>这是一个基本的类声明，我们创建了两个字段，并且编写了一个类函数。此时，如果我们想要编写其子类，比如Student，并写下了如下代码：</p>
+<pre><code class="language-kotlin">class Student : Person() {
+    var sno = &quot;&quot;
+    var grade = 0
+}
+</code></pre>
+<p>我们会发现出现了编译错误——Person类是final的，无法被继承。</p>
+<p>这是因为Kotlin默认类是无法被继承的，如果想要允许类被继承，需要使用open关键字开放对某类的继承，即像这样：</p>
+<pre><code class="language-kotlin">open class Person {
+    var name = &quot;&quot;
+    var age = 0
+    fun eat() {
+        println(&quot;$name is eating. He is $age years old.&quot;)
+    }
+}
+</code></pre>
+<p>可能你会疑惑，类被允许继承不是理所应当的吗？为何要多此一举手动开放继承权限呢？</p>
+<p>这里涉及到了Kotlin语言的设计思想，《Effective Java》中曾经指出——如果一个类不是专门为继承而设计的，那么就应该主动将它加上final声明，禁止它可以被继承。这样可以避免一些未知的风险，而Kotlin则是贯彻这一理念，强制coder遵循这一思想。其实这也是一种安全性的体现。</p>
+<hr>
+<p>还有一些关于主次构造函数的辨析内容，写起来可能比较多，后续再进行补充。</p>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/kotlin/">Kotlin</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://visors.github.io/post/kotlin%E7%B1%BB%E8%AF%AD%E6%B3%95%E5%8F%8A%E9%81%BF%E9%9B%B7/&amp;text=Kotlin%e7%b1%bb%e8%af%ad%e6%b3%95%e5%8f%8a%e9%81%bf%e9%9b%b7" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://visors.github.io/post/kotlin%E7%B1%BB%E8%AF%AD%E6%B3%95%E5%8F%8A%E9%81%BF%E9%9B%B7/&amp;t=Kotlin%e7%b1%bb%e8%af%ad%e6%b3%95%e5%8f%8a%e9%81%bf%e9%9b%b7" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Kotlin%e7%b1%bb%e8%af%ad%e6%b3%95%e5%8f%8a%e9%81%bf%e9%9b%b7&amp;body=https://visors.github.io/post/kotlin%E7%B1%BB%E8%AF%AD%E6%B3%95%E5%8F%8A%E9%81%BF%E9%9B%B7/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://visors.github.io/post/kotlin%E7%B1%BB%E8%AF%AD%E6%B3%95%E5%8F%8A%E9%81%BF%E9%9B%B7/&amp;title=Kotlin%e7%b1%bb%e8%af%ad%e6%b3%95%e5%8f%8a%e9%81%bf%e9%9b%b7" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Kotlin%e7%b1%bb%e8%af%ad%e6%b3%95%e5%8f%8a%e9%81%bf%e9%9b%b7%20https://visors.github.io/post/kotlin%E7%B1%BB%E8%AF%AD%E6%B3%95%E5%8F%8A%E9%81%BF%E9%9B%B7/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://visors.github.io/post/kotlin%E7%B1%BB%E8%AF%AD%E6%B3%95%E5%8F%8A%E9%81%BF%E9%9B%B7/&amp;title=Kotlin%e7%b1%bb%e8%af%ad%e6%b3%95%e5%8f%8a%e9%81%bf%e9%9b%b7" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
     
     
 
-    
-    
-    
-    <div class="article-widget content-widget-hr">
-      <h3>Latest</h3>
-      <ul>
-        
-        <li>
-          <a href="/post/kotlin%E7%B1%BB%E8%AF%AD%E6%B3%95%E5%8F%8A%E9%81%BF%E9%9B%B7/">Kotlin类语法及避雷</a>
-        </li>
-        
-        <li>
-          <a href="/post/hack-the-box%E6%B3%A8%E5%86%8C%E6%96%B9%E6%B3%95/">Hack The Box注册方法</a>
-        </li>
-        
-        <li>
-          <a href="/post/%E4%BD%BF%E7%94%A8vscode%E4%B8%80%E9%94%AE%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8Cjava%E4%BB%A3%E7%A0%81/">使用vscode一键编译运行Java代码</a>
-        </li>
-        
-        <li>
-          <a href="/post/%E8%93%9D%E6%A1%A5%E7%9C%81%E8%B5%9B%E6%A8%A1%E6%8B%9F/">蓝桥省赛模拟</a>
-        </li>
-        
-        <li>
-          <a href="/post/codeforces-round-637-div.2/">Codeforces Round 637 Div.2</a>
-        </li>
-        
-        <li>
-          <a href="/post/%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BD%95%E4%B8%8D%E8%83%BD%E8%BD%BB%E4%BF%A1%E8%AF%84%E8%AE%BA/">我们为何不能轻信评论</a>
-        </li>
-        
-        <li>
-          <a href="/post/codeforces-round-636-div.3/">Codeforces Round 636 Div.3</a>
-        </li>
-        
-      </ul>
-    </div>
-    
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/post/hack-the-box%E6%B3%A8%E5%86%8C%E6%96%B9%E6%B3%95/" rel="prev">Hack The Box注册方法</a>
   </div>
-</section>
+  
+</div>
+
+</div>
+
+
+
+  
+  
+
+
+
+  </div>
+</article>
 
       
 
