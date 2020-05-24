@@ -635,7 +635,7 @@ function getTeamList() {
         type: "GET",
         content: "application/x-www-form-urlencoded",
         //url: "data/ranklist.json",
-		url: from,
+		    url: from,
         dataType: "json",
         async: false,
         data: {},
