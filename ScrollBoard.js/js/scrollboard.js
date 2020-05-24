@@ -663,7 +663,7 @@ function getTeamList() {
 	$.ajax({
         type: "GET",
         content: "application/x-www-form-urlencoded",
-        url: "data/SCPC.json",
+        url: "data/scpc.json",
         dataType: "json",
         async: false,
         data: {},
