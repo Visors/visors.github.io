@@ -635,7 +635,7 @@ function getTeamList() {
         type: "GET",
         content: "application/x-www-form-urlencoded",
         //url: "data/ranklist.json",
-		    url: from,
+		url: from,
         dataType: "json",
         async: false,
         data: {},
@@ -663,7 +663,7 @@ function getTeamList() {
 	$.ajax({
         type: "GET",
         content: "application/x-www-form-urlencoded",
-        url: "data/scpc.json",
+        url: "data/acmclub2019.json",
         dataType: "json",
         async: false,
         data: {},
