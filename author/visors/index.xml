@@ -5,12 +5,168 @@
     <link>https://visors.github.io/author/visors/</link>
       <atom:link href="https://visors.github.io/author/visors/index.xml" rel="self" type="application/rss+xml" />
     <description>Visors</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Fri, 08 May 2020 12:13:12 +0800</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Mon, 01 Jun 2020 10:09:27 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Visors</title>
       <link>https://visors.github.io/author/visors/</link>
     </image>
+    
+    <item>
+      <title>Java8新特性</title>
+      <link>https://visors.github.io/post/java8%E6%96%B0%E7%89%B9%E6%80%A7/</link>
+      <pubDate>Mon, 01 Jun 2020 10:09:27 +0800</pubDate>
+      <guid>https://visors.github.io/post/java8%E6%96%B0%E7%89%B9%E6%80%A7/</guid>
+      <description>&lt;p&gt;我们的教材虽然在前言中声明使用的是Java8，但一些Java8比较重要的新特性并没有出现在教材中，此处略作补充。&lt;/p&gt;
+&lt;h2 id=&#34;lambda表达式&#34;&gt;Lambda表达式&lt;/h2&gt;
+&lt;p&gt;Lambda 表达式，也可称为闭包，它是推动 Java 8 发布的最重要新特性。&lt;/p&gt;
+&lt;h3 id=&#34;什么是闭包&#34;&gt;什么是闭包？&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;没错这个词很熟悉，离散数学中讲过，不过这里我们以编程的角度来介绍它&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;闭包又称词法闭包，最早定义为一种包含&lt;em&gt;&lt;strong&gt;环境成分&lt;/strong&gt;&lt;/em&gt;和&lt;em&gt;&lt;strong&gt;控制成分&lt;/strong&gt;&lt;/em&gt;的实体。&lt;/p&gt;
+&lt;p&gt;解释一：闭包是引用了自由变量的函数，这个被引用的变量将和这个函数一同存在。&lt;/p&gt;
+&lt;p&gt;解释二：闭包是函数和相关引用环境组成的实体。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;自由变量&lt;/strong&gt;&lt;/em&gt;：除了局部变量的其他变量&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;简单理解：闭包能够将一个方法作为一个变量去存储，这个方法有能力去访问所在类的自由变量。&lt;/p&gt;
+&lt;p&gt;我们来看一个 Getter&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class Closure {
+    private int x = 1;
+
+    public int getX() {
+        return x; // return this.x
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在这段代码中，虽然我们是直接&lt;code&gt;return x&lt;/code&gt;，但其实它是省略的&lt;code&gt;return this.x&lt;/code&gt;，也就是说 Getter 捕获了外部作用域（环境）中的变量 x （自由变量），因此形成了闭包。 Getter 已经是非常常见的方法了，可想而知一个大点的工程项目里会有多少个闭包。但是如果闭包都像这里的 Getter 一样，把自由变量写在环境里，显然这样的代码连续性是很差的，而且我们并不一定希望自由变量永远的存在于环境里（可能会造成全局变量污染等），这时候就需要使用 Lambda 表达式（通常需要结合&lt;em&gt;&lt;strong&gt;函数式接口&lt;/strong&gt;&lt;/em&gt;，后面会讲解）来解决这一问题。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Lambda 允许把函数作为一个方法的参数（函数作为参数传递进方法中）。&lt;/p&gt;
+&lt;p&gt;使用 Lambda 表达式可以使代码变的更加简洁紧凑（可能很多时候更重要）。&lt;/p&gt;
+&lt;h3 id=&#34;语法&#34;&gt;语法&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;(parameters) -&amp;gt; expression
+(parameters) -&amp;gt; { statements; }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;以下是lambda表达式的重要特征:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;**可选类型声明：**不需要声明参数类型，编译器可以统一识别参数值。&lt;/li&gt;
+&lt;li&gt;**可选的参数圆括号：**一个参数无需定义（显式书写）圆括号，但多个参数需要定义圆括号。&lt;/li&gt;
+&lt;li&gt;**可选的大括号：**如果主体只包含了一个语句（expression），就不需要使用大括号。&lt;/li&gt;
+&lt;li&gt;**可选的返回关键字：**如果主体只有一个表达式返回值则编译器会自动返回值（不用显式书写 return），大括号需要指明表达式返回值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;实例&#34;&gt;实例&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;// 1. 不需要参数,返回值为 5  
+() -&amp;gt; 5  // 此处无参数，但仍要保留括号，避免语法缺省（在Kotlin中甚至可以简写成5）
+  
+// 2. 接收一个参数(数字类型),返回其2倍的值  
+x -&amp;gt; 2 * x  
+  
+// 3. 接受2个参数(数字),并返回他们的差值  
+(x, y) -&amp;gt; x – y  // 得益于Java8对泛型的类型推导，类型推导在Java10中得到了进一步进化
+  
+// 4. 接收2个int型整数,返回他们的和  
+(int x, int y) -&amp;gt; x + y  
+  
+// 5. 接受一个 string 对象,并在控制台打印,不返回任何值(看起来像是返回void)  
+(String s) -&amp;gt; System.out.print(s)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;虚拟扩展方法&#34;&gt;虚拟扩展方法&lt;/h2&gt;
+&lt;p&gt;接口的封装和可复用性是接口的主要优点，但如果出现这样的设计，&lt;strong&gt;类只需要实现接口的部分方法&lt;/strong&gt;时，提供所有接口方法的方法实现就会显得十分冗余。虽然这一问题可以通过设计来获得解决，但 Java8 提供了虚拟扩展方法来解决这一问题。&lt;/p&gt;
+&lt;p&gt;虚拟扩展方法是接口中具有默认实现的方法。如果实现类不提供方法的实现，则使用默认的实现。实现类可以重写默认实现，或提供新的默认实现。&lt;/p&gt;
+&lt;p&gt;虚拟扩展方法中的默认实现是用 &lt;code&gt;default&lt;/code&gt; 关键字提供的。由于虚拟扩展方法提供默认实现，因此不能是抽象方法。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;interface Formula {
+    double calculate(int a);
+
+    default double sqrt(int a) {
+        return Math.sqrt(a);
+    }
+}
+
+public class Default {
+    public static void main(String[] args) {
+        Formula formula = new Formula() { // 这个意思可不是声明了一个接口实例
+            @Override
+            public double calculate(int a) {
+                return sqrt(a * 100);
+            }
+
+//            @Override
+//            public double sqrt(int a) {
+//                return 0;
+//            }
+        };
+        System.out.println(formula.calculate(100)); // 100.0
+        System.out.println(formula.sqrt(16)); // 4.0
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;函数式接口&#34;&gt;函数式接口&lt;/h2&gt;
+&lt;p&gt;Lambda 表达式是如何在 Java 的类型系统中表示的呢？每一个 Lambda 表达式都对应一个类型，通常是接口类型。而&lt;strong&gt;函数式接口&lt;/strong&gt;是指仅仅只包含一个抽象方法的接口，每一个该类型的 Lambda 表达式都会被匹配到这个抽象方法。因为 默认方法 不算抽象方法，所以你也可以给你的函数式接口添加默认方法。&lt;/p&gt;
+&lt;p&gt;我们可以将 Lambda 表达式当作任意只包含一个抽象方法的接口类型，确保你的接口一定达到这个要求，你只需要给你的接口添加&lt;code&gt;@FunctionalInterface&lt;/code&gt;注解，编译器如果发现你标注了这个注解的接口有多于一个抽象方法的时候会报错的（类似的还有&lt;code&gt;@override&lt;/code&gt;等）。&lt;/p&gt;
+&lt;p&gt;我们可以来看一个函数式接口的使用例子&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;/**
+ * @Project innovation
+ * @Filename Seller
+ * @Author Visors
+ * @Date 2020/6/1 17:27
+ * @Version 1.0
+ * @Description TODO
+ **/
+
+class Seller1 implements Runnable {
+    private int ticket;
+
+    public Seller1(int ticket) {
+        this.ticket = ticket;
+    }
+
+    @Override
+    public void run() {
+        while (ticket &amp;gt; 0) {
+            ticket--;
+            System.out.println(&amp;quot;剩余&amp;quot; + ticket + &amp;quot;张票&amp;quot;);
+        }
+    }
+}
+
+@FunctionalInterface
+interface Seller2 {
+    void run(int ticket);
+}
+
+public class Functional {
+
+    public static void main(String[] args) {
+        System.out.println(&amp;quot;开始卖票！&amp;quot;);
+//        new Seller1(10).run();
+//        new Thread(new Seller1(100)).start();
+//        new Thread(new Seller1(20)).start();
+        new Seller2() {
+            @Override
+            public void run(int ticket) {
+                while (ticket &amp;gt; 0) {
+                    ticket--;
+                    System.out.println(&amp;quot;剩余&amp;quot; + ticket + &amp;quot;张票&amp;quot;);
+                }
+            }
+        }.run(10);
+        // 没有自由变量
+        ((Seller2) ticket -&amp;gt; {
+            while (ticket &amp;lt; 10) {
+                ticket++;
+                System.out.println(&amp;quot;补充到&amp;quot; + ticket + &amp;quot;张票&amp;quot;);
+            }
+        }).run(0);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;函数式接口的一个重要作用是实现&lt;em&gt;&lt;strong&gt;行为参数化&lt;/strong&gt;&lt;/em&gt;，即将（模板）方法中可变部分设计成该方法的参数，使得该方法具有通用性。详情可见另一个例子，代码较长，不适合贴在这里。&lt;/p&gt;
+&lt;h2 id=&#34;后记&#34;&gt;后记&lt;/h2&gt;
+&lt;p&gt;编写本文时，我发现很多概念的解释是众说纷纭，相对模糊的，为了尽量解释的合理，我广泛参阅了 
+&lt;a href=&#34;https://stackoverflow.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;StackOverflow&lt;/a&gt; 上的一些问答以及国内一些大牛的博客，结合我自己的理解进行了如上的整理，决不能算作是官方的，甚至还会有错误，希望发现错误的读者可以与我一起讨论更正。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Codeforces Round 639 Div.2</title>
