@@ -5,7 +5,7 @@
     <link>https://visors.github.io/post/</link>
       <atom:link href="https://visors.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
@@ -24,8 +24,7 @@
 &lt;center&gt;Dead inside the inner mind&lt;/center&gt;
     &lt;p align=&#34;right&#34; font-style&gt;&lt;i&gt;——YMO《Behind The Mask》&lt;/i&gt;&lt;/p&gt;&lt;/div&gt;
 &lt;h2 id=&#34;tarjan算法&#34;&gt;Tarjan算法&lt;/h2&gt;
-&lt;p&gt;不得不说Robert Tarjan真的是大师，发个网站感受一下
-&lt;a href=&#34;https://dblp.dagstuhl.de/pid/t/RobertEndreTarjan.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;不得不说Robert Tarjan真的是大师，发个网站感受一下&lt;a href=&#34;https://dblp.dagstuhl.de/pid/t/RobertEndreTarjan.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;这里要说的Tarjan算法用于解决无向图的连通性，学习之前，先了解两个概念。&lt;/p&gt;
 &lt;h3 id=&#34;无向连通图的搜索树&#34;&gt;无向连通图的搜索树&lt;/h3&gt;
 &lt;p&gt;当我们遍历一个无向连通图时，显然一个点只会被访问一次，而访问一个点的方法是从一个当前已访问的点$u$，沿着它的邻边走向未访问过的点$v$，则对于任意非遍历起点，其都唯一对应一条边$(u,v)$，这些边恰巧构成一棵树（深究其证明，可考虑将$(u,v)$视为有向边，则非起点入度为$1$，起点入度为$0$），我们称之为&lt;strong&gt;无向连通图的搜索树&lt;/strong&gt;。&lt;/p&gt;
@@ -83,7 +82,7 @@ C === E
       <link>https://visors.github.io/post/%E9%87%8D%E5%90%AF%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%9A%84%E5%90%90%E6%A7%BD/</link>
       <pubDate>Tue, 27 Oct 2020 19:30:26 +0800</pubDate>
       <guid>https://visors.github.io/post/%E9%87%8D%E5%90%AF%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%9A%84%E5%90%90%E6%A7%BD/</guid>
-      <description>&lt;p&gt;换电脑了之后不知道怎么把博客的本地环境搬到新Mac上，所以本博客就一直没有更新，为避免麻烦就在CSDN的博客上发了些内容（择日搬运过来）。这期间我经历了从大二升到大三、以及实验室位置的变动（还有无数场被吊打的比赛），半年的时间转瞬即逝，谁也不知道明天又会发生什么。&lt;/p&gt;
+      <description>&lt;p&gt;换电脑了之后不知道怎么把博客的本地环境搬到新Mac上，所以本博客就一直没有更新，为避免麻烦就在CSDN的博客上发了些内容（择日搬运过来）。这期间我经历了从大二升到大三、以及实验室位置的变动（还有无数场被吊打的比赛），连生成这网站的Academic都改名成了Wowchemy……半年的时间转瞬即逝，谁也不知道明天又会发生什么。&lt;/p&gt;
 &lt;p&gt;由于前些日子想法太多（甚至码了本书），现在复归平静，决心调整下状态，便准备从重启本博客开刀。之前怕转过来网站和git需要重新配置，没想到直接copy文件夹过来就行了，于是乎在感叹于跨平台的便捷性的同时，本站重启……&lt;/p&gt;
 &lt;p&gt;最近听了不少歌，有些过于小众，想同人分享却又怕不受待见，发空间指不定会被当成小众优越🐶，思来想去也只有这个人网站可以容我自在发言，又偶尔有人能看见，便决定以后每发一篇博客，都在前面简短安利一首歌，若读者遇上喜欢的，欢迎与我交流。也许某天也能遇到那么一个人，会一边听着我安利的歌，一边读着我的文章，那便是荣幸之至了。&lt;/p&gt;
 </description>
@@ -240,8 +239,7 @@ public class Functional {
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;函数式接口的一个重要作用是实现&lt;em&gt;&lt;strong&gt;行为参数化&lt;/strong&gt;&lt;/em&gt;，即将（模板）方法中可变部分设计成该方法的参数，使得该方法具有通用性。详情可见另一个例子，代码较长，不适合贴在这里。&lt;/p&gt;
 &lt;h2 id=&#34;后记&#34;&gt;后记&lt;/h2&gt;
-&lt;p&gt;编写本文时，我发现很多概念的解释是众说纷纭，相对模糊的，为了尽量解释的合理，我广泛参阅了 
-&lt;a href=&#34;https://stackoverflow.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;StackOverflow&lt;/a&gt; 上的一些问答以及国内一些大牛的博客，结合我自己的理解进行了如上的整理，决不能算作是官方的，甚至还会有错误，希望发现错误的读者可以与我一起讨论更正。&lt;/p&gt;
+&lt;p&gt;编写本文时，我发现很多概念的解释是众说纷纭，相对模糊的，为了尽量解释的合理，我广泛参阅了 &lt;a href=&#34;https://stackoverflow.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;StackOverflow&lt;/a&gt; 上的一些问答以及国内一些大牛的博客，结合我自己的理解进行了如上的整理，决不能算作是官方的，甚至还会有错误，希望发现错误的读者可以与我一起讨论更正。&lt;/p&gt;
 </description>
     </item>
     
@@ -254,8 +252,7 @@ public class Functional {
 &lt;blockquote&gt;
 &lt;p&gt;另B被人用暴力水过了……&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;c---hilberts-hotelhttpscodeforcescomcontest1345problemc&#34;&gt;
-&lt;a href=&#34;https://codeforces.com/contest/1345/problem/C&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;C - Hilbert&amp;rsquo;s Hotel&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;c---hilberts-hotelhttpscodeforcescomcontest1345problemc&#34;&gt;&lt;a href=&#34;https://codeforces.com/contest/1345/problem/C&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;C - Hilbert&amp;rsquo;s Hotel&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;这题其实非常简单，比赛的时候想到了正解，不过不知道怎么验证。第二天YGL告诉我这样写就OK，我就认真想了下，好像确实是这么一回事。&lt;/p&gt;
 &lt;p&gt;虽然考虑的整数是无穷的，但是我们可以人为的把它划分成长度为$n$的周期，题目其实就是对一个周期中的数按照$a[]$的值进行偏移。那么什么时候会空出房间呢？显然是两个不同不同的数在偏移过后得到了相同的结果呗。用数学的方式来表示，那就是&lt;/p&gt;
 &lt;p&gt;$$
@@ -270,8 +267,7 @@ $$&lt;/p&gt;
 &lt;p&gt;当然这里存在一点细节，由于C/Java使用的是$Truncate$除法，所以如果负数对正数取模时，得到的结果可能是负数，实际编写时，为了防止下标越界，我们应该进一步处理&lt;/p&gt;
 &lt;p&gt;$(i+a_i)\% n=(j+a_j)\% n$&lt;/p&gt;
 &lt;p&gt;$((i+a_i)\% n+n)\% n=((j+a_j)\% n+n)\% n$&lt;/p&gt;
-&lt;p&gt;取模在不同语言下得到的结果可能不同，这取决于语言遵循的取整方式，详细内容可以参考《
-&lt;a href=&#34;https://www.jianshu.com/p/452c1a5acd31&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;负数取模怎么算&lt;/a&gt;》&lt;/p&gt;
+&lt;p&gt;取模在不同语言下得到的结果可能不同，这取决于语言遵循的取整方式，详细内容可以参考《&lt;a href=&#34;https://www.jianshu.com/p/452c1a5acd31&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;负数取模怎么算&lt;/a&gt;》&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/**
   * @Project Codeforces_Round__639__Div__2_
   * @Filename Hilberts_Hotel
@@ -357,8 +353,7 @@ int main() {
       <link>https://visors.github.io/post/hack-the-box%E6%B3%A8%E5%86%8C%E6%96%B9%E6%B3%95/</link>
       <pubDate>Mon, 27 Apr 2020 09:43:15 +0800</pubDate>
       <guid>https://visors.github.io/post/hack-the-box%E6%B3%A8%E5%86%8C%E6%96%B9%E6%B3%95/</guid>
-      <description>&lt;p&gt;
-&lt;a href=&#34;https://www.hackthebox.eu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hack The Box&lt;/a&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.hackthebox.eu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hack The Box&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;在YGL那里看到这个，听说是拿来训练CTF竞赛的。看上去比较高大上，就先蹭进去再说。&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;一开始进去应该是这样一个页面&lt;/p&gt;
@@ -1038,8 +1033,7 @@ int main() {
 &lt;p&gt;终于上分了真的，感觉可以冲到一两千名的（C代码出的时候提交还不多），结果C沉了，最终只有六千名。毕竟这次手稍微快hhh。本来以为我C的代码够简洁了，没想到正解好像更简洁……&lt;/p&gt;
 &lt;p&gt;这次真的是非常遗憾，C和D都接近想到正解，却没有最终AC。另外吐槽一下本场的题面，是真的难读……不过题目质量还是在线的。&lt;/p&gt;
 &lt;h2 id=&#34;解题报告&#34;&gt;解题报告&lt;/h2&gt;
-&lt;h3 id=&#34;c---nastya-and-strange-generatorhttpscodeforcescomcontest1341problemc&#34;&gt;
-&lt;a href=&#34;https://codeforces.com/contest/1341/problem/C&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;C - Nastya and Strange Generator&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;c---nastya-and-strange-generatorhttpscodeforcescomcontest1341problemc&#34;&gt;&lt;a href=&#34;https://codeforces.com/contest/1341/problem/C&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;C - Nastya and Strange Generator&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;C的题目很难读，直接把LYH读崩了，所以这里我先简要翻译一下。&lt;/p&gt;
 &lt;p&gt;本题需要我们按照规则检查题目给出的排列能否被生成。开始时排列$p$为空，然后我们按照以下规则依次将$1\sim n$填入排列，一开始$i=1$：&lt;/p&gt;
 &lt;ol&gt;
@@ -1169,8 +1163,7 @@ int main() {
 &lt;p&gt;最近开始参加Codeforces Round——注册四五年，才打四五场比赛。&lt;/p&gt;
 &lt;p&gt;不打打CF还不知道自己竟然这么菜，打个div3先是手速过慢被一众巨巨甩掉，后面偏难题目又A不掉不能实现弯道超车，菜的真实，后面还得加大力度，早日冲上1900分。&lt;/p&gt;
 &lt;h2 id=&#34;解题报告&#34;&gt;解题报告&lt;/h2&gt;
-&lt;h3 id=&#34;d---constant-palindrome-sumhttpscodeforcescomcontest1343problemd&#34;&gt;
-&lt;a href=&#34;https://codeforces.com/contest/1343/problem/D&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;D - Constant Palindrome Sum&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;d---constant-palindrome-sumhttpscodeforcescomcontest1343problemd&#34;&gt;&lt;a href=&#34;https://codeforces.com/contest/1343/problem/D&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;D - Constant Palindrome Sum&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;这题看上去好想二分一波，但实际上并没有什么好的局部转移的规则。由于这场基本都是数学思维题，所以感觉这题也是这个方向。一开始被题面迷惑了一波，以为minimum是要每次改变最小的数，然后YY半天发现其实是最少次改变数……&lt;/p&gt;
 &lt;p&gt;思考的时候已经发现了Tutorial中的三点：&lt;/p&gt;
 &lt;ol&gt;
@@ -1227,8 +1220,7 @@ int main() {
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;cf77661481.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;e---weights-distributinghttpscodeforcescomcontest1343probleme&#34;&gt;
-&lt;a href=&#34;https://codeforces.com/contest/1343/problem/E&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;E - Weights Distributing&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;e---weights-distributinghttpscodeforcescomcontest1343probleme&#34;&gt;&lt;a href=&#34;https://codeforces.com/contest/1343/problem/E&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;E - Weights Distributing&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;这题虽然是2400分，但我觉得我是可写的，只是比赛连看都没看一眼，前面还需压缩时间。&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;这道题题面比较长，但其实核心问题比较简单：&lt;/p&gt;

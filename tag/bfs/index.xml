@@ -5,7 +5,7 @@
     <link>https://visors.github.io/tag/bfs/</link>
       <atom:link href="https://visors.github.io/tag/bfs/index.xml" rel="self" type="application/rss+xml" />
     <description>BFS</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Wed, 22 Apr 2020 21:13:22 +0800</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Wed, 22 Apr 2020 21:13:22 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>BFS</title>
@@ -21,8 +21,7 @@
 &lt;p&gt;最近开始参加Codeforces Round——注册四五年，才打四五场比赛。&lt;/p&gt;
 &lt;p&gt;不打打CF还不知道自己竟然这么菜，打个div3先是手速过慢被一众巨巨甩掉，后面偏难题目又A不掉不能实现弯道超车，菜的真实，后面还得加大力度，早日冲上1900分。&lt;/p&gt;
 &lt;h2 id=&#34;解题报告&#34;&gt;解题报告&lt;/h2&gt;
-&lt;h3 id=&#34;d---constant-palindrome-sumhttpscodeforcescomcontest1343problemd&#34;&gt;
-&lt;a href=&#34;https://codeforces.com/contest/1343/problem/D&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;D - Constant Palindrome Sum&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;d---constant-palindrome-sumhttpscodeforcescomcontest1343problemd&#34;&gt;&lt;a href=&#34;https://codeforces.com/contest/1343/problem/D&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;D - Constant Palindrome Sum&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;这题看上去好想二分一波，但实际上并没有什么好的局部转移的规则。由于这场基本都是数学思维题，所以感觉这题也是这个方向。一开始被题面迷惑了一波，以为minimum是要每次改变最小的数，然后YY半天发现其实是最少次改变数……&lt;/p&gt;
 &lt;p&gt;思考的时候已经发现了Tutorial中的三点：&lt;/p&gt;
 &lt;ol&gt;
@@ -79,8 +78,7 @@ int main() {
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;cf77661481.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;e---weights-distributinghttpscodeforcescomcontest1343probleme&#34;&gt;
-&lt;a href=&#34;https://codeforces.com/contest/1343/problem/E&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;E - Weights Distributing&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;e---weights-distributinghttpscodeforcescomcontest1343probleme&#34;&gt;&lt;a href=&#34;https://codeforces.com/contest/1343/problem/E&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;E - Weights Distributing&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;这题虽然是2400分，但我觉得我是可写的，只是比赛连看都没看一眼，前面还需压缩时间。&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;这道题题面比较长，但其实核心问题比较简单：&lt;/p&gt;

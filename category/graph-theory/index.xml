@@ -5,7 +5,7 @@
     <link>https://visors.github.io/category/graph-theory/</link>
       <atom:link href="https://visors.github.io/category/graph-theory/index.xml" rel="self" type="application/rss+xml" />
     <description>Graph Theory</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Tue, 27 Oct 2020 19:54:43 +0800</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Tue, 27 Oct 2020 19:54:43 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Graph Theory</title>
@@ -24,8 +24,7 @@
 &lt;center&gt;Dead inside the inner mind&lt;/center&gt;
     &lt;p align=&#34;right&#34; font-style&gt;&lt;i&gt;——YMO《Behind The Mask》&lt;/i&gt;&lt;/p&gt;&lt;/div&gt;
 &lt;h2 id=&#34;tarjan算法&#34;&gt;Tarjan算法&lt;/h2&gt;
-&lt;p&gt;不得不说Robert Tarjan真的是大师，发个网站感受一下
-&lt;a href=&#34;https://dblp.dagstuhl.de/pid/t/RobertEndreTarjan.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;不得不说Robert Tarjan真的是大师，发个网站感受一下&lt;a href=&#34;https://dblp.dagstuhl.de/pid/t/RobertEndreTarjan.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;这里要说的Tarjan算法用于解决无向图的连通性，学习之前，先了解两个概念。&lt;/p&gt;
 &lt;h3 id=&#34;无向连通图的搜索树&#34;&gt;无向连通图的搜索树&lt;/h3&gt;
 &lt;p&gt;当我们遍历一个无向连通图时，显然一个点只会被访问一次，而访问一个点的方法是从一个当前已访问的点$u$，沿着它的邻边走向未访问过的点$v$，则对于任意非遍历起点，其都唯一对应一条边$(u,v)$，这些边恰巧构成一棵树（深究其证明，可考虑将$(u,v)$视为有向边，则非起点入度为$1$，起点入度为$0$），我们称之为&lt;strong&gt;无向连通图的搜索树&lt;/strong&gt;。&lt;/p&gt;

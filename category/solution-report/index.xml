@@ -5,7 +5,7 @@
     <link>https://visors.github.io/category/solution-report/</link>
       <atom:link href="https://visors.github.io/category/solution-report/index.xml" rel="self" type="application/rss+xml" />
     <description>Solution Report</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Fri, 08 May 2020 12:13:12 +0800</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Fri, 08 May 2020 12:13:12 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Solution Report</title>
@@ -21,8 +21,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;另B被人用暴力水过了……&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;c---hilberts-hotelhttpscodeforcescomcontest1345problemc&#34;&gt;
-&lt;a href=&#34;https://codeforces.com/contest/1345/problem/C&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;C - Hilbert&amp;rsquo;s Hotel&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;c---hilberts-hotelhttpscodeforcescomcontest1345problemc&#34;&gt;&lt;a href=&#34;https://codeforces.com/contest/1345/problem/C&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;C - Hilbert&amp;rsquo;s Hotel&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;这题其实非常简单，比赛的时候想到了正解，不过不知道怎么验证。第二天YGL告诉我这样写就OK，我就认真想了下，好像确实是这么一回事。&lt;/p&gt;
 &lt;p&gt;虽然考虑的整数是无穷的，但是我们可以人为的把它划分成长度为$n$的周期，题目其实就是对一个周期中的数按照$a[]$的值进行偏移。那么什么时候会空出房间呢？显然是两个不同不同的数在偏移过后得到了相同的结果呗。用数学的方式来表示，那就是&lt;/p&gt;
 &lt;p&gt;$$
@@ -37,8 +36,7 @@ $$&lt;/p&gt;
 &lt;p&gt;当然这里存在一点细节，由于C/Java使用的是$Truncate$除法，所以如果负数对正数取模时，得到的结果可能是负数，实际编写时，为了防止下标越界，我们应该进一步处理&lt;/p&gt;
 &lt;p&gt;$(i+a_i)\% n=(j+a_j)\% n$&lt;/p&gt;
 &lt;p&gt;$((i+a_i)\% n+n)\% n=((j+a_j)\% n+n)\% n$&lt;/p&gt;
-&lt;p&gt;取模在不同语言下得到的结果可能不同，这取决于语言遵循的取整方式，详细内容可以参考《
-&lt;a href=&#34;https://www.jianshu.com/p/452c1a5acd31&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;负数取模怎么算&lt;/a&gt;》&lt;/p&gt;
+&lt;p&gt;取模在不同语言下得到的结果可能不同，这取决于语言遵循的取整方式，详细内容可以参考《&lt;a href=&#34;https://www.jianshu.com/p/452c1a5acd31&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;负数取模怎么算&lt;/a&gt;》&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/**
   * @Project Codeforces_Round__639__Div__2_
   * @Filename Hilberts_Hotel
@@ -687,8 +685,7 @@ int main() {
 &lt;p&gt;终于上分了真的，感觉可以冲到一两千名的（C代码出的时候提交还不多），结果C沉了，最终只有六千名。毕竟这次手稍微快hhh。本来以为我C的代码够简洁了，没想到正解好像更简洁……&lt;/p&gt;
 &lt;p&gt;这次真的是非常遗憾，C和D都接近想到正解，却没有最终AC。另外吐槽一下本场的题面，是真的难读……不过题目质量还是在线的。&lt;/p&gt;
 &lt;h2 id=&#34;解题报告&#34;&gt;解题报告&lt;/h2&gt;
-&lt;h3 id=&#34;c---nastya-and-strange-generatorhttpscodeforcescomcontest1341problemc&#34;&gt;
-&lt;a href=&#34;https://codeforces.com/contest/1341/problem/C&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;C - Nastya and Strange Generator&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;c---nastya-and-strange-generatorhttpscodeforcescomcontest1341problemc&#34;&gt;&lt;a href=&#34;https://codeforces.com/contest/1341/problem/C&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;C - Nastya and Strange Generator&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;C的题目很难读，直接把LYH读崩了，所以这里我先简要翻译一下。&lt;/p&gt;
 &lt;p&gt;本题需要我们按照规则检查题目给出的排列能否被生成。开始时排列$p$为空，然后我们按照以下规则依次将$1\sim n$填入排列，一开始$i=1$：&lt;/p&gt;
 &lt;ol&gt;
@@ -807,8 +804,7 @@ int main() {
 &lt;p&gt;最近开始参加Codeforces Round——注册四五年，才打四五场比赛。&lt;/p&gt;
 &lt;p&gt;不打打CF还不知道自己竟然这么菜，打个div3先是手速过慢被一众巨巨甩掉，后面偏难题目又A不掉不能实现弯道超车，菜的真实，后面还得加大力度，早日冲上1900分。&lt;/p&gt;
 &lt;h2 id=&#34;解题报告&#34;&gt;解题报告&lt;/h2&gt;
-&lt;h3 id=&#34;d---constant-palindrome-sumhttpscodeforcescomcontest1343problemd&#34;&gt;
-&lt;a href=&#34;https://codeforces.com/contest/1343/problem/D&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;D - Constant Palindrome Sum&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;d---constant-palindrome-sumhttpscodeforcescomcontest1343problemd&#34;&gt;&lt;a href=&#34;https://codeforces.com/contest/1343/problem/D&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;D - Constant Palindrome Sum&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;这题看上去好想二分一波，但实际上并没有什么好的局部转移的规则。由于这场基本都是数学思维题，所以感觉这题也是这个方向。一开始被题面迷惑了一波，以为minimum是要每次改变最小的数，然后YY半天发现其实是最少次改变数……&lt;/p&gt;
 &lt;p&gt;思考的时候已经发现了Tutorial中的三点：&lt;/p&gt;
 &lt;ol&gt;
@@ -865,8 +861,7 @@ int main() {
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;cf77661481.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;e---weights-distributinghttpscodeforcescomcontest1343probleme&#34;&gt;
-&lt;a href=&#34;https://codeforces.com/contest/1343/problem/E&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;E - Weights Distributing&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;e---weights-distributinghttpscodeforcescomcontest1343probleme&#34;&gt;&lt;a href=&#34;https://codeforces.com/contest/1343/problem/E&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;E - Weights Distributing&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;这题虽然是2400分，但我觉得我是可写的，只是比赛连看都没看一眼，前面还需压缩时间。&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;这道题题面比较长，但其实核心问题比较简单：&lt;/p&gt;

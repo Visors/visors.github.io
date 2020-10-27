@@ -5,7 +5,7 @@
     <link>https://visors.github.io/tag/guide/</link>
       <atom:link href="https://visors.github.io/tag/guide/index.xml" rel="self" type="application/rss+xml" />
     <description>Guide</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Mon, 27 Apr 2020 09:43:15 +0800</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Mon, 27 Apr 2020 09:43:15 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Guide</title>
@@ -17,8 +17,7 @@
       <link>https://visors.github.io/post/hack-the-box%E6%B3%A8%E5%86%8C%E6%96%B9%E6%B3%95/</link>
       <pubDate>Mon, 27 Apr 2020 09:43:15 +0800</pubDate>
       <guid>https://visors.github.io/post/hack-the-box%E6%B3%A8%E5%86%8C%E6%96%B9%E6%B3%95/</guid>
-      <description>&lt;p&gt;
-&lt;a href=&#34;https://www.hackthebox.eu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hack The Box&lt;/a&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.hackthebox.eu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hack The Box&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;在YGL那里看到这个，听说是拿来训练CTF竞赛的。看上去比较高大上，就先蹭进去再说。&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;一开始进去应该是这样一个页面&lt;/p&gt;

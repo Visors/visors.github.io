@@ -5,7 +5,7 @@
     <link>https://visors.github.io/tag/java/</link>
       <atom:link href="https://visors.github.io/tag/java/index.xml" rel="self" type="application/rss+xml" />
     <description>Java</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Mon, 01 Jun 2020 10:09:27 +0800</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Mon, 01 Jun 2020 10:09:27 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Java</title>
@@ -163,8 +163,7 @@ public class Functional {
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;函数式接口的一个重要作用是实现&lt;em&gt;&lt;strong&gt;行为参数化&lt;/strong&gt;&lt;/em&gt;，即将（模板）方法中可变部分设计成该方法的参数，使得该方法具有通用性。详情可见另一个例子，代码较长，不适合贴在这里。&lt;/p&gt;
 &lt;h2 id=&#34;后记&#34;&gt;后记&lt;/h2&gt;
-&lt;p&gt;编写本文时，我发现很多概念的解释是众说纷纭，相对模糊的，为了尽量解释的合理，我广泛参阅了 
-&lt;a href=&#34;https://stackoverflow.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;StackOverflow&lt;/a&gt; 上的一些问答以及国内一些大牛的博客，结合我自己的理解进行了如上的整理，决不能算作是官方的，甚至还会有错误，希望发现错误的读者可以与我一起讨论更正。&lt;/p&gt;
+&lt;p&gt;编写本文时，我发现很多概念的解释是众说纷纭，相对模糊的，为了尽量解释的合理，我广泛参阅了 &lt;a href=&#34;https://stackoverflow.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;StackOverflow&lt;/a&gt; 上的一些问答以及国内一些大牛的博客，结合我自己的理解进行了如上的整理，决不能算作是官方的，甚至还会有错误，希望发现错误的读者可以与我一起讨论更正。&lt;/p&gt;
 </description>
     </item>
     
