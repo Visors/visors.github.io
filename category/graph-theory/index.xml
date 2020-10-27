@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Graph Theory | Visors的个人主页</title>
+    <link>https://visors.github.io/category/graph-theory/</link>
+      <atom:link href="https://visors.github.io/category/graph-theory/index.xml" rel="self" type="application/rss+xml" />
+    <description>Graph Theory</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Tue, 27 Oct 2020 19:54:43 +0800</lastBuildDate>
+    <image>
+      <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Graph Theory</title>
+      <link>https://visors.github.io/category/graph-theory/</link>
+    </image>
+    
+    <item>
+      <title>Tarjan求无向图割边</title>
+      <link>https://visors.github.io/post/tarjan%E6%B1%82%E6%97%A0%E5%90%91%E5%9B%BE%E5%89%B2%E8%BE%B9/</link>
+      <pubDate>Tue, 27 Oct 2020 19:54:43 +0800</pubDate>
+      <guid>https://visors.github.io/post/tarjan%E6%B1%82%E6%97%A0%E5%90%91%E5%9B%BE%E5%89%B2%E8%BE%B9/</guid>
+      <description>&lt;link href=&#34;https://fonts.googleapis.com/css2?family=Marck+Script&amp;display=swap&#34; rel=&#34;stylesheet&#34;&gt;
+&lt;div style=&#34;font-family:&#39;Marck Script&#39;&#34;&gt;&lt;center&gt;There&#39;s nothing in your eyes&lt;/center&gt;
+&lt;center&gt;That marks where you cried&lt;/center&gt;
+&lt;center&gt;All is blank all is blind&lt;/center&gt;
+&lt;center&gt;Dead inside the inner mind&lt;/center&gt;
+    &lt;p align=&#34;right&#34; font-style&gt;&lt;i&gt;——YMO《Behind The Mask》&lt;/i&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;h2 id=&#34;tarjan算法&#34;&gt;Tarjan算法&lt;/h2&gt;
+&lt;p&gt;不得不说Robert Tarjan真的是大师，发个网站感受一下
+&lt;a href=&#34;https://dblp.dagstuhl.de/pid/t/RobertEndreTarjan.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;这里要说的Tarjan算法用于解决无向图的连通性，学习之前，先了解两个概念。&lt;/p&gt;
+&lt;h3 id=&#34;无向连通图的搜索树&#34;&gt;无向连通图的搜索树&lt;/h3&gt;
+&lt;p&gt;当我们遍历一个无向连通图时，显然一个点只会被访问一次，而访问一个点的方法是从一个当前已访问的点$u$，沿着它的邻边走向未访问过的点$v$，则对于任意非遍历起点，其都唯一对应一条边$(u,v)$，这些边恰巧构成一棵树（深究其证明，可考虑将$(u,v)$视为有向边，则非起点入度为$1$，起点入度为$0$），我们称之为&lt;strong&gt;无向连通图的搜索树&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;由于DFS序不唯一，所以搜索树也不唯一。若按节点编号顺序遍历图，则搜索树如下图中加粗部分：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+A((A))
+B((B))
+C((C))
+D((D))
+E((E))
+A === B
+A --- C
+B === C
+B --- D
+C === D
+C === E
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;时间戳dfn&#34;&gt;时间戳dfn&lt;/h3&gt;
+&lt;p&gt;按照DFS的先后顺序，我们可以为每个节点定义一个访问时间，其为该点在DFS序中的下标，我们称之为&lt;strong&gt;时间戳&lt;/strong&gt;。对于上图，DFS序为$ABCDE$，则若从$1$开始标记时间，则各点时间戳为：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+A((1))
+B((2))
+C((3))
+D((4))
+E((5))
+A === B
+A --- C
+B === C
+B --- D
+C === D
+C === E
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;追溯值low&#34;&gt;追溯值low&lt;/h3&gt;
+&lt;p&gt;当DFS序不同时，我们对节点标记的dfn也不尽相同，例如上图稍加改变，即可得到：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+A((1))
+B((2))
+C((4))
+D((3))
+E((5))
+A === B
+A --- C
+B --- C
+B === D
+C === D
+C === E
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;所以单纯考虑dfn似乎没什么意义。&lt;/p&gt;
+&lt;p&gt;我们考虑这样一个事实：若一个点$u$存在非搜索树上的邻边$(u,v)$，且$dfn(u)&amp;gt;dfn(v)$，则显然遍历到点$v$（先于$u$）时，如果我们先走$(u,v)$，那么$dfn(u)$将变小。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
