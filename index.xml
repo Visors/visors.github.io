@@ -5,7 +5,7 @@
     <link>https://visors.github.io/</link>
       <atom:link href="https://visors.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Visors的个人主页</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Mon, 01 Jun 2020 10:09:27 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Visors的个人主页</title>
@@ -327,7 +327,7 @@ int main() {
 勾选运行前保存（也可以不勾选手动ctrl+s保存）&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;在工作文件夹下新建&amp;rdquo;.vscode&amp;quot;文件夹，新建设置文件&amp;quot;settings.json&amp;rdquo;，拷贝下面的代码，并作本地化修改（大部分设置已有注释，部分是cpp的设置，可自行修改）&lt;/p&gt;
+&lt;p&gt;在工作文件夹下新建&amp;quot;.vscode&amp;quot;文件夹，新建设置文件&amp;quot;settings.json&amp;quot;，拷贝下面的代码，并作本地化修改（大部分设置已有注释，部分是cpp的设置，可自行修改）&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
