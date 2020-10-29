@@ -5,12 +5,172 @@
     <link>https://visors.github.io/category/graph-theory/</link>
       <atom:link href="https://visors.github.io/category/graph-theory/index.xml" rel="self" type="application/rss+xml" />
     <description>Graph Theory</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Tue, 27 Oct 2020 19:54:43 +0800</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Thu, 29 Oct 2020 10:28:18 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Graph Theory</title>
       <link>https://visors.github.io/category/graph-theory/</link>
     </image>
+    
+    <item>
+      <title>Tarjan求无向图割点</title>
+      <link>https://visors.github.io/post/tarjan%E6%B1%82%E6%97%A0%E5%90%91%E5%9B%BE%E5%89%B2%E7%82%B9/</link>
+      <pubDate>Thu, 29 Oct 2020 10:28:18 +0800</pubDate>
+      <guid>https://visors.github.io/post/tarjan%E6%B1%82%E6%97%A0%E5%90%91%E5%9B%BE%E5%89%B2%E7%82%B9/</guid>
+      <description>&lt;link href=&#34;https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&amp;display=swap&#34; rel=&#34;stylesheet&#34;&gt;
+&lt;div style=&#34;font-family:&#39;Noto Serif JP&#39;, serif&#34;&gt;&lt;center&gt;さざ波のラインダンス 時間だけこわれてく&lt;/center&gt;
+	&lt;center&gt;まなざしのボルテージ 熱くしながら&lt;/center&gt;
+	&lt;center&gt;君に胸キュン 夏の印画紙&lt;/center&gt;
+	&lt;center&gt;太陽だけ焼きつけて&lt;/center&gt;
+	&lt;center&gt;君に胸キュン ぼくはと言えば&lt;/center&gt;
+	&lt;center&gt;柄にもなくプラトニック&lt;/center&gt;
+	&lt;center&gt;心の距離を計る 罪つくりな潮風&lt;/center&gt;
+   	&lt;center&gt;眼を伏せた一瞬の せつなさがいい&lt;/center&gt;
+    &lt;p align=&#34;right&#34; font-style&gt;&lt;i&gt;——YMO《君に、胸キュン。-浮気なヴァカンス-》&lt;/i&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;Tarjan算法的核心思想已经在《&lt;a href=&#34;https://visors.github.io/post/tarjan%e6%b1%82%e6%97%a0%e5%90%91%e5%9b%be%e5%89%b2%e8%be%b9/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tarjan求无向图割边&lt;/a&gt;》中介绍了，不清楚的读者可以先行阅读那部分内容，这里直接从介绍割点开始。&lt;/p&gt;
+&lt;h2 id=&#34;无向图的割点及判定&#34;&gt;无向图的割点及判定&lt;/h2&gt;
+&lt;p&gt;.&lt;/p&gt;
+&lt;p&gt;对于无向连通图$G(V,E)$，若删去点$v\in V$及其邻边$\forall u\in {V-v}, (v,u)\in E$后，$G$被分为两个或更多互不连通的子图，则称$v$为&lt;strong&gt;割点&lt;/strong&gt;或&lt;strong&gt;割顶&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;根据上面$dfn$和$low$，很容易能想出割边的方法——无向边$(u,v)$是割边，当且仅当搜索树上存在$u$的一个子节点$v$，满足：&lt;/p&gt;
+&lt;p&gt;$$dfn[u]\leq low[v]$$&lt;/p&gt;
+&lt;p&gt;如果不明白上式，可以参考之前文章中抽象的三种图形。当$dfn[u]=low[v]$时，两条链合起来状似闭环，此时无割边，但两条链$dfn$最小的咬合点显然是割点。&lt;/p&gt;
+&lt;p&gt;特别的，对于我们搜索的起点，上述判定方法还需限定条件，先来看一个反例：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+A((1/1))
+B((2/1))
+C((3/1))
+D((4/1))
+A === B
+B === C
+C === D
+D --- A
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上图中，有唯一满足$dfn[u]\leq low[v]$的$(1,2)$，但去掉$1$后，剩余图为：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+B((2))
+C((3))
+D((4))
+B --- C
+C --- D
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;并没有被分为两个或以上的互不连通子图，所以这里搜索起点$1$尽管满足上面的判别式，但并不是割点。&lt;/p&gt;
+&lt;p&gt;是不是所有的搜索起点都不是割点呢？提出这个问题固然在思考，但细想却很好笑——任意点都能作为搜索起点，如果这句话成立，则任意点都不是割点。&lt;/p&gt;
+&lt;h2 id=&#34;对搜索起点的处理&#34;&gt;对搜索起点的处理&lt;/h2&gt;
+&lt;p&gt;如果搜索起点有两个以上的子树，则意味着在搜索树上，根结点出度为二或以上。根据树的性质，如果我们删去根节点及其邻边，则原树将裂解成子树个数个互不连通的树。若不明白，任意找几棵树观察便知。&lt;/p&gt;
+&lt;p&gt;要在代码中实现上述判断，可记录从根节点出发的邻点调用的DFS次数即可，伪代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;int children = 0;
+for (int v: G[u]) {
+    if (!vis[v]) {
+        children++;
+        dfs(v);
+    }
+}
+if (children &amp;gt;= 2)  u是割点
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;对重边的处理&#34;&gt;对重边的处理&lt;/h2&gt;
+&lt;p&gt;对割点问题而言，删去割点将会将所有相邻的重边删去，所以割点问题并不受重边影响。&lt;/p&gt;
+&lt;h2 id=&#34;参考实现&#34;&gt;参考实现&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;//
+// Created by Visors on 2020/10/29.
+//
+// 题目名：P3388 【模板】割点（割顶）
+// 题目来源：luogu
+// 题目链接：https://www.luogu.com.cn/problem/P3388
+// 算法：Tarjan
+// 用途：无向图割点
+// 时间复杂度：O(n+m)
+//
+
+#include &amp;lt;bits/stdc++.h&amp;gt;
+
+using namespace std;
+
+struct Tarjan {
+    struct Edge {
+        int to, next;
+
+        Edge() = default;
+
+        Edge(int to, int next) : to(to), next(next) {}
+    };
+
+    int vertexNum{}, edgeNum{};
+    int cnt{};              // 当前时间戳
+    int root{};             // 保存当前搜索树根
+    vector&amp;lt;Edge&amp;gt; edges;
+    vector&amp;lt;int&amp;gt; heads;
+    vector&amp;lt;int&amp;gt; dfn;        // 时间戳
+    vector&amp;lt;int&amp;gt; low;        // 最早追溯时间
+    set&amp;lt;int&amp;gt; cuts;          // 割点编号集
+
+    void init(int n, int m) {
+        cnt = 0;
+        vertexNum = n;
+        edgeNum = m;
+        heads.resize(vertexNum);
+        fill(heads.begin(), heads.end(), -1);
+        dfn.resize(vertexNum);
+        low.resize(vertexNum);
+        cuts.clear();
+    }
+
+    void addEdge(int u, int v) {
+        edges.emplace_back(v, heads[u]);
+        heads[u] = edges.size() - 1;
+    }
+
+    void dfs(int u) {
+        dfn[u] = low[u] = ++cnt;
+        int tot = 0;
+        for (int i = heads[u]; ~i; i = edges[i].next) {
+            int &amp;amp;v = edges[i].to;
+            if (!dfn[v]) {
+                dfs(v);
+                low[u] = min(low[u], low[v]);
+                if (low[v] &amp;gt;= dfn[u]) {
+                    tot++;
+                    if (u != root || tot &amp;gt; 1) cuts.insert(u);   // 对树根特判
+                }
+            } else low[u] = min(low[u], dfn[v]);
+        }
+    }
+
+    void run() {
+        for (int i = 0; i &amp;lt; vertexNum; i++)
+            if (!dfn[i]) {
+                root = i;
+                dfs(i);
+            }
+    }
+} tarjan;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr), cout.tie(nullptr);
+    int n, m;
+    cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m;
+    tarjan.init(n, m);
+    for (int i = 1, u, v; i &amp;lt;= m; i++) {
+        cin &amp;gt;&amp;gt; u &amp;gt;&amp;gt; v;
+        if (u == v) continue;
+        u--, v--;
+        tarjan.addEdge(u, v);
+        tarjan.addEdge(v, u);
+    }
+    tarjan.run();
+    cout &amp;lt;&amp;lt; tarjan.cuts.size() &amp;lt;&amp;lt; endl;
+    bool first = true;
+    for (int it:tarjan.cuts)
+        if (first) {
+            cout &amp;lt;&amp;lt; it + 1;
+            first = false;
+        } else cout &amp;lt;&amp;lt; &#39; &#39; &amp;lt;&amp;lt; it + 1;
+    cout &amp;lt;&amp;lt; endl;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Tarjan求无向图割边</title>
@@ -142,7 +302,7 @@ C === E
 &lt;p&gt;对于无向连通图$G(V,E)$，若删去边$e\in E$后，$G$被分为两个不连通的子图，则称$e$为&lt;strong&gt;割边&lt;/strong&gt;或&lt;strong&gt;桥&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;根据上面$dfn$和$low$，很容易能想出割边的方法——无向边$(u,v)$是割边，当且仅当搜索树上存在$u$的一个子节点$v$，满足：&lt;/p&gt;
 &lt;p&gt;$$dfn[u]&amp;lt;low[v]$$&lt;/p&gt;
-&lt;p&gt;如果不明白上式，可以想象，$dfn[u]$指代了一条从起点到$u$的搜索树链，而$low[v]$代表了一条从$v$到$low[v]$对应的点的回溯链。那么若$dfn[u]&amp;lt;low[v]$，则这两条链相连状似一条穿起来的皮带（加粗部分），那么删掉皮带多出来的那一截中的任意一条边，都能使将原图分为两个不连通的子图：&lt;/p&gt;
+&lt;p&gt;如果不明白上式，可以想象，$dfn[u]$指代了一条从起点到$u$的搜索树链，而$low[v]$代表了一条从$v$到$low[v]$对应的点的回溯链。那么若$dfn[u]&amp;lt;low[v]$，则这两条链相连状似一条穿起来的皮带（加粗部分），那么删掉皮带多出来的那一截中的任意一条边，都能使将原图分为两个不连通的子图（后面的点都无法追溯到$u$）：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
 s((s))
 a((a))

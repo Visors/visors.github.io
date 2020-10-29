@@ -877,7 +877,7 @@ C === E
 <p>对于无向连通图$G(V,E)$，若删去边$e\in E$后，$G$被分为两个不连通的子图，则称$e$为<strong>割边</strong>或<strong>桥</strong>。</p>
 <p>根据上面$dfn$和$low$，很容易能想出割边的方法——无向边$(u,v)$是割边，当且仅当搜索树上存在$u$的一个子节点$v$，满足：</p>
 <p>$$dfn[u]&lt;low[v]$$</p>
-<p>如果不明白上式，可以想象，$dfn[u]$指代了一条从起点到$u$的搜索树链，而$low[v]$代表了一条从$v$到$low[v]$对应的点的回溯链。那么若$dfn[u]&lt;low[v]$，则这两条链相连状似一条穿起来的皮带（加粗部分），那么删掉皮带多出来的那一截中的任意一条边，都能使将原图分为两个不连通的子图：</p>
+<p>如果不明白上式，可以想象，$dfn[u]$指代了一条从起点到$u$的搜索树链，而$low[v]$代表了一条从$v$到$low[v]$对应的点的回溯链。那么若$dfn[u]&lt;low[v]$，则这两条链相连状似一条穿起来的皮带（加粗部分），那么删掉皮带多出来的那一截中的任意一条边，都能使将原图分为两个不连通的子图（后面的点都无法追溯到$u$）：</p>
 <pre><code class="language-mermaid">graph LR
 s((s))
 a((a))
@@ -1168,6 +1168,13 @@ int main() {
 <div class="article-widget">
   
 <div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/post/tarjan%E6%B1%82%E6%97%A0%E5%90%91%E5%9B%BE%E5%89%B2%E7%82%B9/" rel="next">Tarjan求无向图割点</a>
+  </div>
   
   
   
