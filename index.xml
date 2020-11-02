@@ -5,12 +5,172 @@
     <link>https://visors.github.io/</link>
       <atom:link href="https://visors.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Visors的个人主页</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Thu, 29 Oct 2020 10:28:18 +0800</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Sat, 31 Oct 2020 10:54:46 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Visors的个人主页</title>
       <link>https://visors.github.io/</link>
     </image>
+    
+    <item>
+      <title>Tarjan求割点所割连通分量数</title>
+      <link>https://visors.github.io/post/tarjan%E6%B1%82%E5%89%B2%E7%82%B9%E6%89%80%E5%89%B2%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E6%95%B0/</link>
+      <pubDate>Sat, 31 Oct 2020 10:54:46 +0800</pubDate>
+      <guid>https://visors.github.io/post/tarjan%E6%B1%82%E5%89%B2%E7%82%B9%E6%89%80%E5%89%B2%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E6%95%B0/</guid>
+      <description>&lt;link href=&#34;https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&amp;display=swap&#34; rel=&#34;stylesheet&#34;&gt;
+&lt;div style=&#34;font-family:&#39;Noto Serif JP&#39;, serif&#34;&gt;
+    &lt;center&gt;ただ ひたすらなその思い&lt;/center&gt;
+	&lt;center&gt;孤独な闇をいつか&lt;/center&gt;
+	&lt;center&gt;照らすだろう&lt;/center&gt;
+    &lt;p align=&#34;right&#34; font-style&gt;&lt;i&gt;——《3びきのくま》&lt;/i&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Tarjan求割点的方法已经在《&lt;a href=&#34;https://visors.github.io/post/tarjan%e6%b1%82%e6%97%a0%e5%90%91%e5%9b%be%e5%89%b2%e7%82%b9/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tarjan求无向图割点&lt;/a&gt;》中介绍了，不清楚的读者可以先行阅读那部分内容，这里直接分析求割点所割连通分量数的方法。&lt;/p&gt;
+&lt;h2 id=&#34;heading&#34;&gt;&lt;/h2&gt;
+&lt;p&gt;前面介绍Tarjan算法时，我们介绍了无向图的搜索树的概念。那时，我们从形状的角度感性认识了Tarjan算法的正确性，事实上，对于$low$的实际意义，我们可以更进一步地思考一下，首先回顾下$low$的求法：&lt;/p&gt;
+&lt;p&gt;考虑这样的点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;存在非搜索树上的边$(u,v)$的$v$点&lt;/li&gt;
+&lt;li&gt;在回溯前能访问到的最早的点，即搜索树中以$u$为根的子树上的点能访问到的最早的点&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;找出这些点中的最小的时间戳，即为我们能追溯到的最早节点，我们称之为&lt;strong&gt;追溯值&lt;/strong&gt;$low$。&lt;/p&gt;
+&lt;p&gt;注意上述定义中，对于点$u$，在考虑第一种点时，我们只需考虑其$dfn$即可，而对于第二种点，我们需要在递归过程中考虑其子节点的$low$才行。对于该子树上一叶子$a$，显然其无子节点，若要更新其$low$，必然有非搜索树上的边$(a,b)$，使得$low[a] = dfn[b]$，否则$low[a]=dfn[a]$。继续向上考虑，若一个节点在回溯前每个点都无非搜索树上的边，则其$low = dfn$。换言之，一旦一个节点的$low\neq dfn$，则其子树上必有一点存在不在搜索树上的边。顺着这个思路往下想，由于这是一个递归过程，所以当递归回溯到$u$的邻点$v$时，$low[v]$应当为其子树中所有节点最小的$low$，亦即能追溯到的最早的点。若$low[v]\neq dfn[v]$，则一定存在某个子节点有一条连向时间戳为$low[v]$的点，那么形状准确来说应该类似下图：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+A((A))
+B((B))
+C((C))
+D((D))
+E((E))
+F((F))
+A --- B
+B === C
+C --- D
+D --- E
+D --- F
+F -.- C
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上图是一个缩略的图模型，意思指C的子树中有最早能追溯到C的点F，同时B点到C点间所有的点都仅为一条链。此时B到C上任意一点都为割点，删去其中任意一个点都将使其后搜索树上的子图成为一个新的连通子图。&lt;/p&gt;
+&lt;p&gt;这里直接给出我们在删去割点的时候的判断标准：&lt;/p&gt;
+&lt;p&gt;对于一个非搜索树根节点$u$，其有$k$个满足$dfn[u]\leq low[v]$的搜索树上的子节点$v$，则删去$u$后将生成$k+1$个互不连通的子图。&lt;/p&gt;
+&lt;p&gt;这个道理很简单，删去割点，每个满足$dfn[u]\leq low[v]$的节点所在的子树自成一个个连通子图，$u$祖先方向的节点自成一个连通子图。&lt;/p&gt;
+&lt;p&gt;换言之，每有一个满足$dfn[u]\leq low[v]$的子节点$v$，则删去$u$后会使连通子图数$+1$.为什么这些满足$dfn[u]\leq low[v]$的点对新生成互不连通子图的贡献不会重复呢？可以这么证明：&lt;/p&gt;
+&lt;p&gt;若存在$u$的邻点$a$和$b$，满足$dfn[u]\leq low[a]$和$dfn[u]\leq low[b]$，可以假设$a$、$b$连通，那么删去$u$后，$a$和$b$同属一个连通子图，答案只增加1。但事实上，在上述假设情况下，当我们递归访问$a$（假设优先遍历$a$）时，就会遍历到$b$，并为其打上时间戳、求出回溯值，他们在搜索树上属于祖先和后代的关系，那么删去根$u$，显然只会产生多个互不连通的子图，但同时$b$并非$u$邻点，这与假设相悖。所以上述结论得证。&lt;/p&gt;
+&lt;p&gt;但有一个特殊的情况需要注意，如果删除的$u$是整个搜索树的树根，则其没有祖先方向的节点，这样就会少一个连通子图。总结一下就是：&lt;/p&gt;
+&lt;p&gt;对于点$u$：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;$u$不是割点，则删去它不会增加互不连通子图的数目。&lt;/li&gt;
+&lt;li&gt;$u$是割点，假设其满足$dfn[u]\leq low[v]$的邻点$v$有$k$个：
+&lt;ol&gt;
+&lt;li&gt;若$u$是搜索树根，则删去$u$后，互不连通子图数目增加$k-1$。&lt;/li&gt;
+&lt;li&gt;若$u$不是搜索树根，则删去$u$后，互不连通子图数目增加$k$。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;参考实现&#34;&gt;参考实现&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;//
+// Created by Visors on 2020/10/25.
+//
+// 题目名：Router Mesh
+// 题目来源：2020ICPC·小米 网络选拔赛第一场
+// 题目链接：https://ac.nowcoder.com/acm/contest/7501/D
+// 算法：Tarjan
+// 用途：求割点所割连通分量数
+// 时间复杂度：O(n+m)
+//
+
+#include &amp;lt;bits/stdc++.h&amp;gt;
+
+using namespace std;
+
+int block = 0;
+
+struct Tarjan {
+    struct Edge {
+        int to, next;
+
+        Edge() = default;
+
+        Edge(int to, int next) : to(to), next(next) {}
+    };
+
+    int vertexNum{}, edgeNum{};
+    int cnt{};              // 当前时间戳
+    int root{};             // 保存当前搜索树根
+    vector&amp;lt;Edge&amp;gt; edges;
+    vector&amp;lt;int&amp;gt; heads;
+    vector&amp;lt;int&amp;gt; dfn;        // 时间戳
+    vector&amp;lt;int&amp;gt; low;        // 最早追溯时间
+    vector&amp;lt;bool&amp;gt; isCut;     // 割点
+    vector&amp;lt;int&amp;gt; branches;   // 分支数
+
+    void init(int n, int m) {
+        cnt = 0;
+        vertexNum = n;
+        edgeNum = m;
+        heads.resize(vertexNum);
+        fill(heads.begin(), heads.end(), -1);
+        dfn.resize(vertexNum);
+        low.resize(vertexNum);
+        isCut.resize(vertexNum);
+        branches.resize(vertexNum);
+    }
+
+    void addEdge(int u, int v) {
+        edges.emplace_back(v, heads[u]);
+        heads[u] = edges.size() - 1;
+    }
+
+    void dfs(int u) {
+        dfn[u] = low[u] = ++cnt;
+        int tot = 0;
+        for (int i = heads[u]; ~i; i = edges[i].next) {
+            int &amp;amp;v = edges[i].to;
+            if (!dfn[v]) {
+                dfs(v);
+                low[u] = min(low[u], low[v]);
+                if (low[v] &amp;gt;= dfn[u]) {
+                    tot++;
+                    if (u != root || tot &amp;gt; 1) isCut[u] = true;   // 对树根特判
+                }
+            } else low[u] = min(low[u], dfn[v]);
+        }
+        if (u != root) tot++;
+        branches[u] = tot;
+    }
+
+    void run() {
+        for (int i = 0; i &amp;lt; vertexNum; i++)
+            if (!dfn[i]) {
+                root = i;
+                block++;
+                dfs(i);
+            }
+    }
+} tarjan;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr), cout.tie(nullptr);
+    int n, m;
+    cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m;
+    tarjan.init(n, m);
+    for (int i = 1, u, v; i &amp;lt;= m; i++) {
+        cin &amp;gt;&amp;gt; u &amp;gt;&amp;gt; v;
+        u--, v--;
+        tarjan.addEdge(u, v);
+        tarjan.addEdge(v, u);
+    }
+    tarjan.run();
+    cout &amp;lt;&amp;lt; block + tarjan.branches[0] - 1;
+    for (int i = 1; i &amp;lt; n; i++)
+        cout &amp;lt;&amp;lt; &#39; &#39; &amp;lt;&amp;lt; block + tarjan.branches[i] - 1;
+    cout &amp;lt;&amp;lt; endl;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;后记&#34;&gt;后记&lt;/h2&gt;
+&lt;p&gt;比赛的时候不知道从哪看的找值不同的$low$数目是真的煞笔，然后煞笔的我就真的按这个思路交了十发，全WA。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Tarjan求无向图割点</title>
@@ -257,7 +417,7 @@ C === E
 &lt;p&gt;但这样还是无法避免因为DFS序不同产生的不唯一性问题，不过上述思考给我们指明了一个方向——我们不妨试着找到任意点能回溯到的最早的点的时间戳。与上面过程类似，对于任意点$u$，我们只需考虑这样的点：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;存在非搜索树上的边$(u,v)$的$v$点&lt;/li&gt;
-&lt;li&gt;在回溯前访问的点，即搜索树中以$u$为根的点&lt;/li&gt;
+&lt;li&gt;在回溯前能访问到的最早的点，即搜索树中以$u$为根的子树上的点能访问到的最早的点&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;找出这些点中的最小的时间戳，即为我们能追溯到的最早节点，我们称之为&lt;strong&gt;追溯值&lt;/strong&gt;$low$。则依上述定义，我们可求得上图追溯值（A/B表示时间戳为A，追溯值为B）：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
