@@ -30,6 +30,7 @@
 &lt;center&gt;那么坚强&lt;/center&gt;
 &lt;p align=&#34;right&#34;&gt;&lt;i&gt;——林奕匡《冥王星》&lt;/i&gt;&lt;/p&gt;
 &lt;/div&gt;
+&lt;a href=&#34;#content&#34;&gt;&lt;i&gt;jump to content&lt;/i&gt;&lt;/a&gt;
 &lt;p&gt;最近身体状况不太好，导致干事的热情和效率不是很高，今天突然被告知周末就是蓝桥国赛了，惊地赶紧加班加点做做真题、复习一些知识。虽然今年的省赛让我感觉做往年真题的意义不大（难度不是一个等级的），但是做总比不做要好，就当是一个自我检查，同时严格要求自己不能套板子，必须能按照自己的理解独立写出来。&lt;/p&gt;
 &lt;h2 id=&#34;积分之谜&#34;&gt;积分之谜&lt;/h2&gt;
 &lt;h3 id=&#34;问题描述&#34;&gt;问题描述&lt;/h3&gt;
@@ -247,7 +248,7 @@ int main()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;所以首先，我们把代码copy到本地，填完空后，我们输出的结果必须是“1 1 0 0”（填对了一定是这个答案，是这个答案不一定填对了）。&lt;/p&gt;
 &lt;p&gt;我们再分析下题目给出的算法，emmm这就是传说中的$O(n)$合并？？对于该算法，每次合并时将所有同集合元素的m更新为相同值，这样查询时只需要$O(1)$判断下两者m值是否相同即可。算法正确性可用归纳法证明。&lt;/p&gt;
-&lt;p&gt;按照上述意思，补全的代码应该是“if (m[i] == qID) m[i] = pID”&lt;/p&gt;
+&lt;p&gt;按照上述意思，补全的代码应该是&lt;code&gt;if (connected(m, pID, i) m[i] = qID&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id=&#34;密文搜索&#34;&gt;密文搜索&lt;/h2&gt;
 &lt;h3 id=&#34;问题描述-3&#34;&gt;问题描述&lt;/h3&gt;
 &lt;p&gt;福尔摩斯从X星收到一份资料，全部是小写字母组成。&lt;/p&gt;
@@ -262,12 +263,14 @@ int main()
 &lt;p&gt;一个整数, 表示每行密码的所有排列在s中匹配次数的总和。&lt;/p&gt;
 &lt;h4 id=&#34;例如&#34;&gt;例如&lt;/h4&gt;
 &lt;p&gt;用户输入：&lt;/p&gt;
-&lt;p&gt;aaaabbbbaabbcccc&lt;/p&gt;
-&lt;p&gt;2&lt;/p&gt;
-&lt;p&gt;aaaabbbb&lt;/p&gt;
-&lt;p&gt;abcabccc&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;aaaabbbbaabbcccc
+2
+aaaabbbb
+abcabccc
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;则程序应该输出：&lt;/p&gt;
-&lt;p&gt;4&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;4
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;这是因为：第一个密码匹配了3次，第二个密码匹配了1次，一共4次。&lt;/p&gt;
 &lt;h4 id=&#34;资源约定&#34;&gt;资源约定&lt;/h4&gt;
 &lt;p&gt;峰值内存消耗 &amp;lt; 512M&lt;/p&gt;
@@ -350,15 +353,17 @@ int main() {
 &lt;h4 id=&#34;输出格式&#34;&gt;输出格式&lt;/h4&gt;
 &lt;p&gt;输出一行，包含一个整数，表示村内所有人路程的开销和。&lt;/p&gt;
 &lt;h4 id=&#34;样例输入&#34;&gt;样例输入&lt;/h4&gt;
-&lt;p&gt;6 10&lt;/p&gt;
-&lt;p&gt;1 3&lt;/p&gt;
-&lt;p&gt;2 2&lt;/p&gt;
-&lt;p&gt;4 5&lt;/p&gt;
-&lt;p&gt;5 20&lt;/p&gt;
-&lt;p&gt;6 5&lt;/p&gt;
-&lt;p&gt;8 7&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;6 10
+1 3
+2 2
+4 5
+5 20
+6 5
+8 7
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;样例输出&#34;&gt;样例输出&lt;/h4&gt;
-&lt;p&gt;18&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;18
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;样例说明&#34;&gt;样例说明&lt;/h4&gt;
 &lt;p&gt;在距起点2, 5, 8, 10这4个地方集会，6个家庭需要的走的距离分别为1, 0, 1, 0, 2, 0，总的路程开销为1*3+0*2+1*5+0*20+2*5+0*7=18。&lt;/p&gt;
 &lt;h4 id=&#34;数据规模与约定&#34;&gt;数据规模与约定&lt;/h4&gt;
@@ -368,7 +373,188 @@ int main() {
 &lt;h4 id=&#34;资源约定-1&#34;&gt;资源约定&lt;/h4&gt;
 &lt;p&gt;峰值内存消耗 &amp;lt; 512M&lt;/p&gt;
 &lt;p&gt;CPU消耗  &amp;lt; 5000ms&lt;/p&gt;
-</description>
+&lt;h3 id=&#34;分析-4&#34;&gt;分析&lt;/h3&gt;
+&lt;p&gt;显然，题目中的p1,p2,p3应在三个不同的家庭处，那么BF枚举三个点的位置再加上前缀和优化，就能$O(n^3)$求解，但这个复杂度太差了。&lt;/p&gt;
+&lt;p&gt;前缀和如何优化？如果你把居民从家走到集会点看成从家走到p4，再减去p4到其集会点的距离，则对于划分出的一个区间，其减去的值的和应为区间内的人数（前缀和处理）*l-集会点距起点的距离。&lt;/p&gt;
+&lt;p&gt;因着这个，我跟队友讨论了下，莽了个假算法：先枚举p2，然后在左右区间分别三分找p1和p2。交了一下WA了，似乎两遍区间内函数并不是单峰函数，这个算法有问题，不过可以过部分点。不过由于不是官方评测，可能数据有问题，毕竟过的人数只有个位数……&lt;/p&gt;
+&lt;h3 id=&#34;参考代码-2&#34;&gt;参考代码&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;//
+// Created by Visors on 2020/11/11.
+//
+// 题目名：居民集会
+// 题目来源：第六届蓝桥杯国赛
+// 题目链接：https://www.dotcpp.com/oj/problem1829.html
+// 算法：JuMinJiHui.cpp
+// 用途：TODO
+// 时间复杂度：O(TODO)
+//
+
+#include &amp;lt;bits/stdc++.h&amp;gt;
+
+using namespace std;
+
+typedef long long ll;
+typedef pair&amp;lt;int, int&amp;gt; pii;
+
+int n, l;
+set&amp;lt;int&amp;gt; s;
+vector&amp;lt;pii&amp;gt; families;
+vector&amp;lt;ll&amp;gt; preSum;
+int p1, p2, p3;
+
+inline ll getPreSum(int left, int right) {
+    return preSum[right + 1] - preSum[left];
+}
+
+inline ll f1(int x) {
+    return getPreSum(0, x) * (l - families[x].first) + getPreSum(x + 1, p2) * (l - families[p2].first);
+}
+
+inline ll f2(int x) {
+    return getPreSum(p2 + 1, x) * (l - families[x].first);
+}
+
+int sanfen1(int left, int right) {
+    while (left &amp;lt; right - 1) {
+        int mid1 = (left + right) / 2,
+                mid2 = (mid1 + right) / 2;
+        if (f1(mid1) &amp;gt; f1(mid2)) right = mid2;
+        else left = mid1;
+    }
+    return f1(left) &amp;gt; f1(right) ? left : right;
+}
+
+int sanfen2(int left, int right) {
+    while (left &amp;lt; right - 1) {
+        int mid1 = (left + right) / 2,
+                mid2 = (mid1 + right) / 2;
+        if (f2(mid1) &amp;gt; f2(mid2)) right = mid2;
+        else left = mid1;
+    }
+    return f2(left) &amp;gt; f2(right) ? left : right;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr), cout.tie(nullptr);
+    cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; l;
+    families.resize(n);
+    preSum.resize(n + 1);
+    for (pii &amp;amp;it:families) {
+        cin &amp;gt;&amp;gt; it.first &amp;gt;&amp;gt; it.second;
+        s.insert(it.first);
+    }
+    sort(families.begin(), families.end());
+    if (s.size() &amp;lt;= 3) {
+        cout &amp;lt;&amp;lt; &amp;quot;0\n&amp;quot;;
+        return 0;
+    }
+    preSum[0] = 0;
+    for (int i = 1; i &amp;lt;= n; i++)
+        preSum[i] = preSum[i - 1] + families[i - 1].second;
+    ll Sum = 0;
+    for (pii it:families) Sum += (l - it.first) * it.second;
+    ll ans = 0x3f3f3f3f3f3f3f3f;
+    for (int i = 1; i &amp;lt; n - 1; i++) {
+        p2 = i;
+        p1 = sanfen1(0, p2 - 1);
+        p3 = sanfen2(p2 + 1, n - 1);
+        ans = min(ans, Sum - f1(p1) - f2(p3));
+    }
+    cout &amp;lt;&amp;lt; ans &amp;lt;&amp;lt; endl;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;发散-2&#34;&gt;发散&lt;/h3&gt;
+&lt;p&gt;更好的写法是DP，这个DP并不难想，不过不知道为什么当初讨论着讨论着就开始三分了，可能是因为我们都想把分拿满吧。经过前缀和优化后，DP可以$O(n^2)$出解，有大佬指出该DP可以斜率优化，不过我不懂……&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/Baobab_Tree&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;名道&lt;/a&gt;《&lt;a href=&#34;https://blog.csdn.net/Baobab_Tree/article/details/90109757&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;15年国赛 居民集会&lt;/a&gt;》&lt;/p&gt;
+&lt;h2 id=&#34;模型染色&#34;&gt;模型染色&lt;/h2&gt;
+&lt;h3 id=&#34;题目描述-1&#34;&gt;题目描述&lt;/h3&gt;
+&lt;p&gt;在电影《超能陆战队》中，小宏可以使用他的微型机器人组合成各种各样的形状。&lt;/p&gt;
+&lt;p&gt;现在他用他的微型机器人拼成了一个大玩具给小朋友们玩。为了更加美观，他决定给玩具染色。&lt;/p&gt;
+&lt;p&gt;小宏的玩具由n个球型的端点和m段连接这些端点之间的边组成。下图给出了一个由5个球型端点和4条边组成的玩具，看上去很像一个分子的球棍模型。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./图2.png&#34; alt=&#34;图2&#34; style=&#34;zoom:33%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;由于小宏的微型机器人很灵活，这些球型端点可以在空间中任意移动，同时连接相邻两个球型端点的边可以任意的伸缩，这样一个玩具可以变换出不同的形状。在变换的过程中，边不会增加，也不会减少。&lt;/p&gt;
+&lt;p&gt;小宏想给他的玩具染上不超过k种颜色，这样玩具看上去会不一样。如果通过变换可以使得玩具变成完全相同的颜色模式，则认为是本质相同的染色。现在小宏想知道，可能有多少种本质不同的染色。&lt;/p&gt;
+&lt;h4 id=&#34;输入格式-1&#34;&gt;输入格式&lt;/h4&gt;
+&lt;p&gt;输入的第一行包含三个整数n, m, k，&lt;/p&gt;
+&lt;p&gt;分别表示小宏的玩具上的端点数、边数和小宏可能使用的颜色数。端点从1到n编号。&lt;/p&gt;
+&lt;p&gt;接下来m行每行两个整数a, b，表示第a个端点和第b个端点之间有一条边。输入保证不会出现两条相同的边。&lt;/p&gt;
+&lt;h4 id=&#34;输出格式-1&#34;&gt;输出格式&lt;/h4&gt;
+&lt;p&gt;输出一行，表示本质不同的染色的方案数。由于方案数可能很多，请输入方案数除10007的余数。&lt;/p&gt;
+&lt;h4 id=&#34;样例输入-1&#34;&gt;样例输入&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;3 2 2
+1 2
+3 2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;样例输出-1&#34;&gt;样例输出&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;6
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;样例说明-1&#34;&gt;样例说明&lt;/h4&gt;
+&lt;p&gt;令(a, b, c)表示第一个端点染成a，第二个端点染成b，第三个端点染成c，则下面6种本质不同的染色：(1, 1, 1), (1, 1, 2), (1, 2, 1), (1, 2, 2), (2, 1, 2), (2, 2, 2)。&lt;/p&gt;
+&lt;p&gt;而(2, 1, 1)与(1, 1, 2)是本质相同的，(2, 2, 1)与(2, 1, 2)是本质相同的。&lt;/p&gt;
+&lt;h4 id=&#34;数据规模与约定-1&#34;&gt;数据规模与约定&lt;/h4&gt;
+&lt;p&gt;对于20%的评测数据，1&amp;lt;=n&amp;lt;=5， 1&amp;lt;=k&amp;lt;=2。&lt;/p&gt;
+&lt;p&gt;对于50%的评测数据，1&amp;lt;=n&amp;lt;=10, 1&amp;lt;=k&amp;lt;=8。&lt;/p&gt;
+&lt;p&gt;对于100%的评测数据，1&amp;lt;=n&amp;lt;=10, 1&amp;lt;=m&amp;lt;=45, 1&amp;lt;=k&amp;lt;=30。&lt;/p&gt;
+&lt;h4 id=&#34;资源约定-2&#34;&gt;资源约定&lt;/h4&gt;
+&lt;p&gt;峰值内存消耗 &amp;lt; 512M&lt;/p&gt;
+&lt;p&gt;CPU消耗  &amp;lt; 5000ms&lt;/p&gt;
+&lt;h3 id=&#34;分析-5&#34;&gt;分析&lt;/h3&gt;
+&lt;p&gt;我只会暴力……大佬说用Polya定理，虽然以前接触过，不过已经忘干净了……&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/Baobab_Tree&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;名道&lt;/a&gt;《&lt;a href=&#34;https://blog.csdn.net/Baobab_Tree/article/details/90109956&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;15年国赛 模型染色&lt;/a&gt;》&lt;/p&gt;
+&lt;h2 id=&#34;后记&#34;&gt;后记&lt;/h2&gt;
+&lt;p&gt;这么看上去国赛大题想拿满分并不简单，不知道到时候同台竞技的人水平如何，突然有一点小虚。&lt;/p&gt;
+&lt;div id=&#34;content&#34;&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#积分之谜&#34;&gt;积分之谜&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#问题描述&#34;&gt;问题描述&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#分析&#34;&gt;分析&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#发散&#34;&gt;发散&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#完美正方形&#34;&gt;完美正方形&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#问题描述-1&#34;&gt;问题描述&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#分析-1&#34;&gt;分析&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#参考代码&#34;&gt;参考代码&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#发散-1&#34;&gt;发散&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#关联账户&#34;&gt;关联账户&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#问题描述-2&#34;&gt;问题描述&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#分析-2&#34;&gt;分析&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#密文搜索&#34;&gt;密文搜索&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#问题描述-3&#34;&gt;问题描述&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#分析-3&#34;&gt;分析&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#参考代码-1&#34;&gt;参考代码&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#吐槽&#34;&gt;吐槽&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#居民集会&#34;&gt;居民集会&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#题目描述&#34;&gt;题目描述&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#分析-4&#34;&gt;分析&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#参考代码-2&#34;&gt;参考代码&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#发散-2&#34;&gt;发散&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#模型染色&#34;&gt;模型染色&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#题目描述-1&#34;&gt;题目描述&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#分析-5&#34;&gt;分析&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#后记&#34;&gt;后记&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/div&gt;</description>
     </item>
     
     <item>
