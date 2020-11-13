@@ -444,11 +444,11 @@ int main() {
         cin &amp;gt;&amp;gt; it.first &amp;gt;&amp;gt; it.second;
         s.insert(it.first);
     }
-    sort(families.begin(), families.end());
     if (s.size() &amp;lt;= 3) {
         cout &amp;lt;&amp;lt; &amp;quot;0\n&amp;quot;;
         return 0;
     }
+    sort(families.begin(), families.end());
     preSum[0] = 0;
     for (int i = 1; i &amp;lt;= n; i++)
         preSum[i] = preSum[i - 1] + families[i - 1].second;

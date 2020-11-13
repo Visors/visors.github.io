@@ -1179,11 +1179,11 @@ int main() {
         cin &gt;&gt; it.first &gt;&gt; it.second;
         s.insert(it.first);
     }
-    sort(families.begin(), families.end());
     if (s.size() &lt;= 3) {
         cout &lt;&lt; &quot;0\n&quot;;
         return 0;
     }
+    sort(families.begin(), families.end());
     preSum[0] = 0;
     for (int i = 1; i &lt;= n; i++)
         preSum[i] = preSum[i - 1] + families[i - 1].second;
@@ -1422,6 +1422,13 @@ int main() {
 <div class="article-widget">
   
 <div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/post/%E7%AC%AC%E5%85%AB%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AF%E5%9B%BD%E8%B5%9B%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" rel="next">第八届蓝桥杯国赛解题报告</a>
+  </div>
   
   
   
