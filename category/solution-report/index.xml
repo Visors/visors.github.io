@@ -5,12 +5,135 @@
     <link>https://visors.github.io/category/solution-report/</link>
       <atom:link href="https://visors.github.io/category/solution-report/index.xml" rel="self" type="application/rss+xml" />
     <description>Solution Report</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 万祚全 All rights reserved</copyright><lastBuildDate>Tue, 10 Nov 2020 19:53:31 +0800</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2021 万祚全 All rights reserved</copyright><lastBuildDate>Wed, 07 Apr 2021 01:50:28 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Solution Report</title>
       <link>https://visors.github.io/category/solution-report/</link>
     </image>
+    
+    <item>
+      <title>UPC组队训练第十二场补题</title>
+      <link>https://visors.github.io/post/upc%E7%BB%84%E9%98%9F%E8%AE%AD%E7%BB%83%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%9C%BA%E8%A1%A5%E9%A2%98/</link>
+      <pubDate>Wed, 07 Apr 2021 01:50:28 +0800</pubDate>
+      <guid>https://visors.github.io/post/upc%E7%BB%84%E9%98%9F%E8%AE%AD%E7%BB%83%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%9C%BA%E8%A1%A5%E9%A2%98/</guid>
+      <description>&lt;h2 id=&#34;one-of-each&#34;&gt;One of Each&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://codeforces.com/gym/102423/problem/J&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;题目传送门&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;讲道理这道题应该可做，不过当时太饿了急着吃饭就没心去想了。&lt;/p&gt;
+&lt;p&gt;用一个栈维护当前解，线性扫描整个序列，对于未取到的数字，我们先检查其是否能在当前解中“上浮”。先说做法，再说原因——检查栈顶元素是否比当前要取数字大，如果大，那么让该数字上浮（当前待取数字最终会压入栈顶，每次检查出栈顶，在所有上浮检查结束后压入栈顶就行），显然字典序最小，重复此操作直至栈为空或栈顶元素不满足上浮条件。上浮的条件除了数字本身的大小关系外，还要看这个栈顶元素在后面是否还会再出现（不然不能让该数字在答案序列中出现在栈顶元素前）。判断后面会不会出现很简单，一开始预处理每个数字出现的个数，线性扫描时不断让对应数字个数减少，即能动态维护当前值后所有数字出现的个数。&lt;/p&gt;
+&lt;p&gt;如果明白了上述过程，一般就能理解其正确性，不过还是稍作解释：&lt;/p&gt;
+&lt;p&gt;我们的解一定是在一个子区间中选出来的，那么当我们的区间向右扩大时，若该数字出现过，不用讨论，因为该数字即使在该处取，也没有在之前取到的地方取好（后面能接的数是之前的子集）；若该数字没出现过，那么我们要考虑该数字能否在追求字典序最小的情况下优化当前解。根据字典序，当然是越小的数越出现在前面越好，所以我们可以对当前解从后往前检查，如果该数字比后端数字小，那么将它放在该位置显然会使字典序最小，但放的时候也要考虑后面会不会有机会再把这个后端元素取回来，如果取不回来，解最终就凑不齐$k$个了。当我们上浮至无法上浮的位置时，就接着去考虑下一个数的加入就行了。因为我们每次上浮都保证了去掉的后端元素存在于后面未取数字中，所以一次线性扫描一定能恰巧取出字典序最小的$k$个元素形成的序列。&lt;/p&gt;
+&lt;p&gt;之前听说stack的实现都是基于vector的，推荐直接用vector替代stack，那就用vector吧。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+
+using namespace std;
+
+int n, k;
+vector&amp;lt;int&amp;gt; v, cnt, ans;
+vector&amp;lt;bool&amp;gt; book;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr), cout.tie(nullptr);
+    cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; k;
+    v.resize(n), cnt.resize(k + 1), book.resize(k + 1);
+    for (int &amp;amp;it:v) {
+        cin &amp;gt;&amp;gt; it;
+        cnt[it]++;
+    }
+    for (int i = 0; i &amp;lt; n; i++) {
+        cnt[v[i]]--;
+        if (!book[v[i]]) {
+            book[v[i]] = true;
+            while (!ans.empty() &amp;amp;&amp;amp; cnt[ans.back()] &amp;gt; 0 &amp;amp;&amp;amp; ans.back() &amp;gt; v[i])
+                book[ans.back()] = false, ans.pop_back();
+            ans.push_back(v[i]);
+        }
+    }
+    for (int i = 0; i &amp;lt; k - 1; i++) cout &amp;lt;&amp;lt; ans[i] &amp;lt;&amp;lt; &#39; &#39;;
+    cout &amp;lt;&amp;lt; ans.back() &amp;lt;&amp;lt; endl;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;swap-free&#34;&gt;Swap Free&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://codeforces.com/gym/102423/problem/D&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;题目传送门&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;初看题目，这道题有个很裸的图论模型，即可以单词为点，为互不可一步转换的词之间建无向边，则题目待求即可转换为最大完全子图的节点数（最大团问题）。&lt;/p&gt;
+&lt;p&gt;不过写的时候我没接触过最大团问题，甚至都没听说过“最大团”这个词，想来惭愧……&lt;/p&gt;
+&lt;p&gt;不过脑补一下，还是能想到最大团的一个求法。当时想的是二分最大团的节点数，然后把度数不足节点数的“枝叶”删掉，但很快就被我想反例，不过这其中删枝叶的思想还是有一定意义的。&lt;/p&gt;
+&lt;p&gt;这里需要用到补图的思想——既然在原图中团的点之间两两连边，那么在补图中他们两两不连边，成一个独立集。那么补图的最大独立集即对应原图的最大团（这么一想可能我在接触最大独立集时就没有研究清楚）。&lt;/p&gt;
+&lt;p&gt;那么考虑本问题的补图是什么——以单词为点，为互相可转换的词之间建无向边。这个图有一个特别的性质，若存在边$(a,b)$和边$(a,c)$，则必定不会存在边$(b,c)$，具体来解释，其实每条边之间都有一个隐形的边权，即两串相互转换对应的字母下标对。那么设$(a,b)$权值为$(p_1,p_2)$，$(a,c)$权值为$(p_3,p_4)$，$(b,c)$权值为$(p_5,p_6)$。这也进一步意味着$a[p_1]=b[p_2]$，$a[p_3]=c[p_4]$，假设存在边$(b,c)$，则有$b[p_5]=c[p_6]$。写到这里，读者可能认为这些式子间毫无关系，但注意本题有一个隐含条件，即对于有边相连的两个单词，除了这些错位不相同的字母对，其它部分应是位置一一对应的相等字符，即有$a[p_5]=b[p_5]=c[p_6]$，对下标的相等情况稍作讨论，即可得出假设矛盾。&lt;/p&gt;
+&lt;p&gt;清楚了这样一个性质，该图即为一个二分图，本来在一般图中求最大独立集很复杂，但在二分图中就非常简单了。在二分图中，最大独立集=点数-最大匹配数，最大匹配数可以使用匈牙利算法解决。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+
+using namespace std;
+
+typedef pair&amp;lt;int, int&amp;gt; Edge;
+
+int n;
+vector&amp;lt;string&amp;gt; words;
+vector&amp;lt;Edge&amp;gt; edges;
+vector&amp;lt;int&amp;gt; heads;
+vector&amp;lt;bool&amp;gt; vis;
+vector&amp;lt;int&amp;gt; match;
+
+
+inline bool check(const string &amp;amp;s1, const string &amp;amp;s2) {
+    // 如果两串恰好有两位置不同，即需连边
+    int cnt = 0;
+    for (int i = 0; i &amp;lt; s1.size(); i++) {
+        if (s1[i] != s2[i]) {
+            cnt++;
+            if (cnt &amp;gt; 2) return false;
+        }
+    }
+    return cnt != 0;
+}
+
+
+inline void addEdge(int u, int v) {
+    edges.emplace_back(v, heads[u]);
+    heads[u] = edges.size() - 1;
+}
+
+bool dfs(int u) {
+    for (int i = heads[u], v; ~i; i = edges[i].second) {
+        if (!vis[v = edges[i].first]) {
+            vis[v] = true;
+            if (!match[v] || dfs(match[v])) {
+                match[v] = u;
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr), cout.tie(nullptr);
+    cin &amp;gt;&amp;gt; n;
+    heads.resize(n, -1);
+    vis.resize(n);
+    match.resize(n);
+    words.resize(n);
+    for (string &amp;amp;s:words) cin &amp;gt;&amp;gt; s;
+    for (int i = 0; i &amp;lt; n; i++)
+        for (int j = i + 1; j &amp;lt; n; j++)
+            if (check(words[i], words[j]))
+                addEdge(i, j), addEdge(j, i);
+    int max_match = 0;
+    for (int i = 0; i &amp;lt; words.size(); i++) {
+        fill(vis.begin(), vis.end(), false);
+        vis[i] = true;
+        if (dfs(i)) max_match++;
+    }
+    cout &amp;lt;&amp;lt; n - max_match / 2 &amp;lt;&amp;lt; endl; // 对所有点dfs，结果要除2
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>第六届蓝桥杯国赛解题报告</title>
