@@ -793,13 +793,13 @@ int main() {
 &lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;tot = a[x = 0][y = 0] = 1;
 while (tot&amp;lt;n*m)
 {
-		while (y + 1&amp;lt;n&amp;amp;&amp;amp;!a[x][y + 1])a[x][++y] = ++tot;
-		while (x + 1&amp;lt;m&amp;amp;&amp;amp;!a[x + 1][y])a[++x][y] = ++tot;
-		while (y - 1 &amp;gt;= 0 &amp;amp;&amp;amp; !a[x][y - 1])a[x][--y] = ++tot;
-		while (x - 1 &amp;gt;= 0 &amp;amp;&amp;amp; !a[x - 1][y])a[--x][y] = ++tot;
+	while (y + 1&amp;lt;n&amp;amp;&amp;amp;!a[x][y + 1])a[x][++y] = ++tot;
+	while (x + 1&amp;lt;m&amp;amp;&amp;amp;!a[x + 1][y])a[++x][y] = ++tot;
+	while (y - 1 &amp;gt;= 0 &amp;amp;&amp;amp; !a[x][y - 1])a[x][--y] = ++tot;
+	while (x - 1 &amp;gt;= 0 &amp;amp;&amp;amp; !a[x - 1][y])a[--x][y] = ++tot;
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这里只放了核心代码，对于初学者来说可能不太容易懂。我初接触算法竞赛时，看到紫书上这个代码，也有点迷糊（刘汝佳代码都比较精炼）。如果不懂，建议智商跟着画一画，或者在Excel里面填着看。&lt;/p&gt;
+&lt;p&gt;这里只放了核心代码，对于初学者来说可能不太容易懂。我初接触算法竞赛时，看到紫书上这个代码，也有点迷糊（刘汝佳代码都比较精炼）。如果不懂，建议纸上跟着画一画，或者在Excel里面填着看。&lt;/p&gt;
 &lt;p&gt;不过我还是得整点活，上述代码时间复杂度肯定是$O(nm)$，数据范围再大点呢？显然容易超时。有没有公式可以让我们快速求解呢？&lt;/p&gt;
 &lt;p&gt;若用$rect[i][j]$表示螺旋矩阵$i$行$j$列的数字，那么对于$n$行$m$列的螺旋矩阵的最外圈，我们可以发现其遵循下面公式：&lt;/p&gt;
 &lt;ol&gt;
