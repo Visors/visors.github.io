@@ -5,12 +5,277 @@
     <link>https://visors.github.io/tag/codeforces/</link>
       <atom:link href="https://visors.github.io/tag/codeforces/index.xml" rel="self" type="application/rss+xml" />
     <description>Codeforces</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2021 万祚全 All rights reserved</copyright><lastBuildDate>Fri, 08 May 2020 12:13:12 +0800</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2021 万祚全 All rights reserved</copyright><lastBuildDate>Tue, 20 Apr 2021 11:31:34 +0800</lastBuildDate>
     <image>
       <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Codeforces</title>
       <link>https://visors.github.io/tag/codeforces/</link>
     </image>
+    
+    <item>
+      <title>Codeforces Round 716 Div.2</title>
+      <link>https://visors.github.io/post/codeforces-round-716-div.2/</link>
+      <pubDate>Tue, 20 Apr 2021 11:31:34 +0800</pubDate>
+      <guid>https://visors.github.io/post/codeforces-round-716-div.2/</guid>
+      <description>&lt;p&gt;已经连着两场掉分了，麻了麻了……&lt;/p&gt;
+&lt;p&gt;这场开的比较早，在寝室里打的，九点多的时候还比较闹，有点难静下心来思考。加之前一晚喝了酒，感觉脑子里一片混沌——这大概是发挥不好的一点场外原因，还是希望下一场能上大分。&lt;/p&gt;
+&lt;p&gt;近期还有一个问题是出题出的比较慢，以往我前两题出的都是非常快的，但最近越来越慢，可能要到四五十分钟才能出完，浩元学长这时候C都已经出思路了……&lt;/p&gt;
+&lt;h2 id=&#34;a---perfectly-imperfect-arrayhttpscodeforcescomcontest1514problema&#34;&gt;&lt;a href=&#34;https://codeforces.com/contest/1514/problem/A&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;A - Perfectly Imperfect Array&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;题目大意就是给定一个数组，问能不能从中取出一个子序列，使得其中所有数的乘积为一个完全平方数。如果可以输出NO，不可以输出YES。&lt;/p&gt;
+&lt;p&gt;对于任意个完全平方数的乘积$a^2&lt;em&gt;b^2&lt;/em&gt;\cdots&lt;em&gt;c^2 = (a&lt;/em&gt;b*\cdots *c)^2$，也一定是完全平方数。所以只要有数组中有非完全平方数，那么取该数为子序列就为YES，否则数组中元素全为完全平方数，任意个组合结果仍是完全平方数，为NO。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+
+using namespace std;
+
+int T, n;
+vector&amp;lt;int&amp;gt; v;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr), cout.tie(nullptr);
+    cin &amp;gt;&amp;gt; T;
+    while (T--) {
+        cin &amp;gt;&amp;gt; n;
+        v.resize(n);
+        for (int &amp;amp;it:v) cin &amp;gt;&amp;gt; it;
+        bool flag = true;
+        for (int it:v) {
+            if (it == 1) continue;
+            int tmp = sqrt(it);
+            if (tmp * tmp != it) {
+                flag = false;
+                break;
+            }
+        }
+        if (!flag) cout &amp;lt;&amp;lt; &amp;quot;YES\n&amp;quot;;
+        else cout &amp;lt;&amp;lt; &amp;quot;NO\n&amp;quot;;
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;b---and-0-sum-bighttpscodeforcescomcontest1514problemb&#34;&gt;&lt;a href=&#34;https://codeforces.com/contest/1514/problem/B&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;B - AND 0, Sum Big&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;一开始读掉了这一条件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the sum of its elements is as large as possible.&lt;/li&gt;
+&lt;li&gt;所有元素的和尽可能大。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;事实上这条就是解题的关键。首先要满足所有数按位与结果为$0$，其实就是要所有数的同位数字中至少出现一个$0$。我们又知道，即使是二进制下我们也可以仿照十进制进行竖式运算，所以要同时让按位与结果为$0$，还要所有元素的和尽可能大，一定是在所有数的同位数字中有且仅出现一个$0$，这样得到的元素和为$(n-1)*(2^k-1)$。&lt;/p&gt;
+&lt;p&gt;那很容易就能得知本题的答案，即每位共$n$个数字，从中选一个作为$0$，其它的作为$1$，总共选$k$位，根据乘法原理答案就是$n^k$。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+
+using namespace std;
+
+typedef long long ll;
+
+const ll MOD = 1e9 + 7;
+
+int T;
+ll n, k;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr), cout.tie(nullptr);
+    cin &amp;gt;&amp;gt; T;
+    while (T--) {
+        cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; k;
+        ll ans = 1;
+        for (int i = 1; i &amp;lt;= k; i++)
+            ans = (ans * n) % MOD;
+        cout &amp;lt;&amp;lt; ans &amp;lt;&amp;lt; endl;
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;c---product-1-modulo-nhttpscodeforcescomcontest1514problemc&#34;&gt;&lt;a href=&#34;https://codeforces.com/contest/1514/problem/C&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;C - Product 1 Modulo N&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;写这题时，我先用下面代码打了个表：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+
+using namespace std;
+
+int n;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr), cout.tie(nullptr);
+    for (n = 1; n &amp;lt;= 20; n++) {
+        vector&amp;lt;int&amp;gt; ans;
+        for (int i = 0; i &amp;lt; (1 &amp;lt;&amp;lt; (n - 1)); i++) {
+            int tmp = i;
+            int cnt = 1, mul = 1;
+            vector&amp;lt;int&amp;gt; v;
+            while (tmp) {
+                if (tmp &amp;amp; 1) {
+                    mul *= cnt;
+                    v.push_back(cnt);
+                }
+                cnt++;
+                tmp &amp;gt;&amp;gt;= 1;
+            }
+            if (mul % n == 1 &amp;amp;&amp;amp; v.size() &amp;gt; ans.size()) ans = v;
+        }
+        cout &amp;lt;&amp;lt; &amp;quot;n = &amp;quot; &amp;lt;&amp;lt; n &amp;lt;&amp;lt; &amp;quot;: \n&amp;quot;;
+        cout &amp;lt;&amp;lt; ans.size() &amp;lt;&amp;lt; endl;
+        for (int it:ans) cout &amp;lt;&amp;lt; it &amp;lt;&amp;lt; &#39; &#39;;
+        cout &amp;lt;&amp;lt; endl;
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;观察了一下$1\leq n\leq 20$下的结果：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;n = 1: 
+0
+
+n = 2: 
+1
+1 
+n = 3: 
+1
+1 
+n = 4: 
+1
+1 
+n = 5: 
+3
+1 2 3 
+n = 6: 
+1
+1 
+n = 7: 
+5
+1 2 3 4 5 
+n = 8: 
+4
+1 3 5 7 
+n = 9: 
+5
+1 2 4 5 7 
+n = 10: 
+3
+1 3 7 
+n = 11: 
+9
+1 2 3 4 5 6 7 8 9 
+n = 12: 
+4
+1 5 7 11 
+n = 13: 
+11
+1 2 3 4 5 6 7 8 9 10 11 
+n = 14: 
+5
+1 3 5 9 11 
+n = 15: 
+8
+1 2 4 7 8 11 13 14 
+n = 16: 
+8
+1 3 5 7 9 11 13 15 
+n = 17: 
+15
+1 2 3 4 5 6 7 8 10 11 12 13 14 15 16 
+n = 18: 
+5
+1 5 7 11 13 
+n = 19: 
+16
+1 2 3 4 5 6 7 8 9 11 12 13 14 15 16 17 
+n = 20: 
+8
+1 3 7 9 11 13 17 19 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后开始找规律，发现首先$n$为偶数时，答案中只有奇数。其次，$n$为奇数时，答案都是从$1\sim n-1$删去几个数构成的。&lt;/p&gt;
+&lt;p&gt;当天有点迷糊，觉得肯定有进一步的规律，但没想出来是什么，就去求助了下学长。发现学长很早之前就已经给了个思路（那时我甚至不知道他说的是C题）——去掉所有与$n$不互素的数，然后特判$n=4k+2$的情况，这种时候要额外去掉$n-1$。我按这个标准核验了下表，发现似乎确实如此，于是码了下面的代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+
+using namespace std;
+
+int n;
+vector&amp;lt;int&amp;gt; prime, ans;
+
+bool check(int k) {
+    int len = sqrt(k);
+    for (int i = 2; i &amp;lt;= len; i++)
+        if (k % i == 0) return false;
+    return true;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr), cout.tie(nullptr);
+    cin &amp;gt;&amp;gt; n;
+    if (n &amp;lt; 5) return cout &amp;lt;&amp;lt; &amp;quot;1\n1\n&amp;quot;, 0;
+    if (check(n)) {
+        cout &amp;lt;&amp;lt; n - 2 &amp;lt;&amp;lt; endl;
+        for (int i = 1; i &amp;lt; n - 2; i++)
+            cout &amp;lt;&amp;lt; i &amp;lt;&amp;lt; &#39; &#39;;
+        cout &amp;lt;&amp;lt; n - 2 &amp;lt;&amp;lt; endl;
+        return 0;
+    }
+    int tmp = n;
+    while (tmp &amp;gt; 1) {
+        for (int i = 2; i &amp;lt;= n; i++)
+            if (tmp % i == 0) {
+                tmp /= i;
+                prime.emplace_back(i);
+                break;
+            }
+    }
+    for (int i = 1; i &amp;lt; n; i++) {
+        bool flag = true;
+        for (int it:prime) {
+            if (i % it == 0) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) ans.emplace_back(i);
+    }
+    if ((n - 2) % 4 == 0 &amp;amp;&amp;amp; ans.back() == n - 1) ans.pop_back();
+    cout &amp;lt;&amp;lt; ans.size() &amp;lt;&amp;lt; endl;
+    for (int i = 0; i &amp;lt; ans.size() - 1; i++) cout &amp;lt;&amp;lt; ans[i] &amp;lt;&amp;lt; &#39; &#39;;
+    cout &amp;lt;&amp;lt; ans.back() &amp;lt;&amp;lt; endl;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最后几秒钟没提交上去，当时还小伤心了会儿。结果最后等System Test结束后补交一发WA了，说明上面的贪心处理策略还是有问题的。&lt;/p&gt;
+&lt;p&gt;不过研究互素的方向是正确的。&lt;/p&gt;
+&lt;p&gt;首先我们假定选定的序列包含$a$，且其它数乘积为$x$（模$n$），那么有$x$是$a$的逆元，$a$就满足$\gcd(a,n)=1$，否则不能入选。&lt;/p&gt;
+&lt;p&gt;我们把所有该选的$a$边累乘边取模，可以得到一个小于$n$的数$mul$，$mul$肯定与$n$互质，所以$mul$一定是在前面取过的，如果$mul\neq 1$，就不取这个数。&lt;/p&gt;
+&lt;p&gt;我不太擅长数论题，只能一知半解借助Tutorial和网络资源理解理解，代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;lt;bits/stdc++.h&amp;gt;
+
+using namespace std;
+
+typedef long long ll;
+
+int n;
+vector&amp;lt;int&amp;gt; v;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr), cout.tie(nullptr);
+    cin &amp;gt;&amp;gt; n;
+    ll mul = 1;
+    for (int i = 1; i &amp;lt; n; i++)
+        if (__gcd(i, n) == 1) {
+            mul = mul * i % n;
+            v.emplace_back(i);
+        }
+    mul %= n;
+    if (mul != 1)
+        for (auto it = v.begin(); it != v.end(); it++)
+            if (*it == mul) {
+                v.erase(it);
+                break;
+            }
+    cout &amp;lt;&amp;lt; v.size() &amp;lt;&amp;lt; endl;
+    for (int i = 0; i &amp;lt; v.size() - 1; i++) cout &amp;lt;&amp;lt; v[i] &amp;lt;&amp;lt; &#39; &#39;;
+    cout &amp;lt;&amp;lt; v.back() &amp;lt;&amp;lt; endl;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Codeforces Round 639 Div.2</title>
