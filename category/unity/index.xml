@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Unity | Visors的个人主页</title>
+    <link>https://visors.github.io/category/unity/</link>
+      <atom:link href="https://visors.github.io/category/unity/index.xml" rel="self" type="application/rss+xml" />
+    <description>Unity</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2022 万祚全 All rights reserved</copyright><lastBuildDate>Fri, 14 Jan 2022 22:19:50 +0800</lastBuildDate>
+    <image>
+      <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Unity</title>
+      <link>https://visors.github.io/category/unity/</link>
+    </image>
+    
+    <item>
+      <title>Unity2D角色移动转向与跳跃</title>
+      <link>https://visors.github.io/post/unity2d%E8%A7%92%E8%89%B2%E7%A7%BB%E5%8A%A8%E8%BD%AC%E5%90%91%E4%B8%8E%E8%B7%B3%E8%B7%83/</link>
+      <pubDate>Fri, 14 Jan 2022 22:19:50 +0800</pubDate>
+      <guid>https://visors.github.io/post/unity2d%E8%A7%92%E8%89%B2%E7%A7%BB%E5%8A%A8%E8%BD%AC%E5%90%91%E4%B8%8E%E8%B7%B3%E8%B7%83/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-Csharp&#34;&gt;using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerMove : MonoBehaviour
+{
+    public Rigidbody2D rb;
+    public float speed;
+    public float jumpforce;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    void FixedUpdate()
+    {
+        Movement();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetButtonDown(&amp;quot;Jump&amp;quot;)) rb.velocity = new Vector2(rb.velocity.x, jumpforce);
+    }
+
+    void Movement()
+    {
+        float flag = Input.GetAxis(&amp;quot;Horizontal&amp;quot;);
+        float facedirection = Input.GetAxisRaw(&amp;quot;Horizontal&amp;quot;);
+        rb.velocity = new Vector2(flag * speed, rb.velocity.y);
+        if (facedirection != 0) transform.localScale = new Vector3(facedirection, 1, 1);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./fox_jump.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;一些记录&#34;&gt;一些记录&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;GetAxis(axisName)&lt;/code&gt;返回由 &lt;code&gt;axisName&lt;/code&gt; 标识的虚拟轴的值。对于键盘和游戏杆输入设备，该值将处于 $-1\dots 1$ 的范围内。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;GetAxisRaw(axisName)&lt;/code&gt;返回由 &lt;code&gt;axisName&lt;/code&gt; 标识的虚拟轴的值（未应用平滑过滤）。对于键盘和游戏杆输入，该值将处于 $-1\dots 1$ 的范围内。 由于未对输入进行平滑处理，键盘输入将始终为 $-1$、$0$ 或 $1$。&lt;/p&gt;
+&lt;p&gt;一开始看见&lt;code&gt;localScale&lt;/code&gt;的修改时，我下意识敲了&lt;code&gt;rb.localScale&lt;/code&gt;，但实际上是&lt;code&gt;transform.localScale&lt;/code&gt;，因为&lt;code&gt;Scale&lt;/code&gt;是&lt;code&gt;transform&lt;/code&gt;下的一个参数，而&lt;code&gt;transform&lt;/code&gt;和&lt;code&gt;script&lt;/code&gt;都同属于一个&lt;code&gt;object&lt;/code&gt;下，所以不需要别的额外的范围限定。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Update&lt;/code&gt;是逐帧执行，&lt;code&gt;FixedUpdate&lt;/code&gt;等时间间隔执行。&lt;/p&gt;
+&lt;p&gt;程序在不同的设备上运行时，受限于设备性能，渲染出的帧数可能不相同，这导致&lt;code&gt;Update&lt;/code&gt;单位时间内在不同设备上的执行次数不同，可能造成实际画面效果不一致。所以推荐使用&lt;code&gt;FixedUpdate&lt;/code&gt;保证效果一致。&lt;/p&gt;
+&lt;p&gt;但在编写跳跃动作时，若采用&lt;code&gt;FixedUpdate&lt;/code&gt;，可能导致按键不响应，改回&lt;code&gt;Update&lt;/code&gt;后解决。问题原因可参考这篇博客&lt;a href=&#34;https://blog.csdn.net/crazygougou/article/details/49331591&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Unity3D系列2：Input.GetButtonDown没有正确响应&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;一些讨论&#34;&gt;一些讨论&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;./discuss.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;不明原理&#34;&gt;不明原理&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;./confuse.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

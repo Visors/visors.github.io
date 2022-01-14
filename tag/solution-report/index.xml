@@ -5,9 +5,9 @@
     <link>https://visors.github.io/tag/solution-report/</link>
       <atom:link href="https://visors.github.io/tag/solution-report/index.xml" rel="self" type="application/rss+xml" />
     <description>Solution Report</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2021 万祚全 All rights reserved</copyright><lastBuildDate>Sun, 25 Apr 2021 22:15:30 +0800</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2022 万祚全 All rights reserved</copyright><lastBuildDate>Sun, 25 Apr 2021 22:15:30 +0800</lastBuildDate>
     <image>
-      <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://visors.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Solution Report</title>
       <link>https://visors.github.io/tag/solution-report/</link>
     </image>
@@ -92,6 +92,8 @@ int main() {
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;c---baby-ehab-partitions-againhttpscodeforcescomcontest1516problemc&#34;&gt;&lt;a href=&#34;https://codeforces.com/contest/1516/problem/C&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;C - Baby Ehab Partitions Again&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;题目大意是给定一个序列，让你删除尽可能少的数，使得删除后的序列不能够被完全划分成两个和相同的部分。&lt;/p&gt;
+&lt;p&gt;所有首先要做的肯定是判断这个序列不删的时候能不能被划分成两个和相同的部分，判断的方法和《kkksc03考前临时抱佛脚》那题一样，可以用01背包求出两部分中和最小的最大值，如果这个最大值为sum/2，那么就不需要找数删，否则不用删数就已经满足要求了，输出0.&lt;/p&gt;
 </description>
     </item>
     
